@@ -87,12 +87,16 @@ export function SignInForm() {
   const t = useTranslations("account");
   const [state, formAction, pending] = useActionState(signInAction, idle);
 
-  const values = state.status === "invalid-credentials" ? state.values : {};
+  const values =
+    state.status === "invalid-credentials" || state.status === "locked" ? state.values : {};
 
   return (
     <form action={formAction} noValidate className="flex flex-col gap-6">
       {state.status === "invalid-credentials" ? (
         <FormAlert>{t("errors.invalidCredentials")}</FormAlert>
+      ) : null}
+      {state.status === "locked" ? (
+        <FormAlert>{t("errors.locked", { minutes: state.minutes })}</FormAlert>
       ) : null}
 
       <TextField

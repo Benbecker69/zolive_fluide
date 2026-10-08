@@ -188,7 +188,8 @@
       "password": "The password must be at least {min} characters long.",
       "emailTaken": "An account already exists with this email address. Sign in, or use another address.",
       "invalidCredentials": "Incorrect email address or password.",
-      "rejected": "The account could not be created. Check the fields and try again."
+      "rejected": "The account could not be created. Check the fields and try again.",
+      "locked": "{minutes, plural, one {Too many attempts. Try again in # minute.} other {Too many attempts. Try again in # minutes.}}"
     }
   }
 }
