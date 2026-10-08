@@ -24,3 +24,4 @@ The format is based on [Keep a Changelog 1.1.0](https://keepachangelog.com/en/1.
 - French and English versions of the site: language prefix in the URL, redirect to the visitor's language, language switcher, localized not-found page, skip link.
 - Catalogue schema (categories, products, formats) with SQL migrations, database constraints on prices and stock, and a deterministic demonstration seed.
 - Integration tests against a real PostgreSQL database, locally and in the pipeline.
+- Shop listing: products read from the database, filter by category and sort carried by the URL, prices formatted for the language, usable without JavaScript.
