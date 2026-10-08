@@ -74,11 +74,13 @@ pnpm db:setup
 pnpm dev
 ```
 
-Le site affiche la page d'accueil (`/fr`, `/en`), la boutique, les fiches produit, le panier (`/fr/panier`) et la charte graphique vivante sur `/fr/styleguide`. Les comptes clients arrivent dans la suite du sprint 2. La maquette se consulte en ouvrant les fichiers de [`design/mockup/`](design/mockup/) dans un navigateur.
+Le site affiche la page d'accueil (`/fr`, `/en`), la boutique, les fiches produit, le panier (`/fr/panier`) et la charte graphique vivante sur `/fr/styleguide`. Les comptes clients (`/fr/inscription`, `/fr/connexion`, `/fr/compte`) sont en place ; la page de compte s'étoffe dans la suite du sprint 2. La maquette se consulte en ouvrant les fichiers de [`design/mockup/`](design/mockup/) dans un navigateur.
 
 ### Configuration
 
 Toute la configuration passe par des variables d'environnement, décrites dans [`.env.example`](.env.example). L'application les valide au démarrage : s'il en manque une ou si une valeur est invalide, elle s'arrête et nomme la variable en cause, sans jamais afficher sa valeur.
+
+Deux points d'attention : `APP_URL` doit être l'adresse exacte saisie dans le navigateur, et `BETTER_AUTH_SECRET`, qui signe les cookies de session, doit être remplacé par une valeur à vous (`openssl rand -base64 32`).
 
 ### Commandes
 

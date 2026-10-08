@@ -40,7 +40,7 @@ echo "   status=$status"
 
 echo "7. The application refuses to start without its configuration and names the variable"
 image=$($compose images --quiet app | head -n 1)
-output=$(docker run --rm -e APP_URL=http://localhost:3000 "$image" 2>&1) && {
+output=$(docker run --rm -e APP_URL=http://localhost:3000 -e BETTER_AUTH_SECRET=smoke-test-only-0123456789abcdef0123 "$image" 2>&1) && {
   echo "   expected a non-zero exit"; exit 1; }
 echo "$output" | sed 's/^/   /'
 echo "$output" | grep -q "DATABASE_URL is missing"
