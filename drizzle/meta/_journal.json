@@ -29,6 +29,13 @@
       "when": 1791462550467,
       "tag": "0003_sign_in_throttle",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1791463059698,
+      "tag": "0004_addresses",
+      "breakpoints": true
     }
   ]
 }
