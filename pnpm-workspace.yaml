@@ -1,0 +1,4 @@
+# Dependencies allowed to run install scripts. Everything else is blocked by pnpm.
+allowBuilds:
+  # Native resolver used by the ESLint import plugin (pulled in by eslint-config-next).
+  unrs-resolver: true
