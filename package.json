@@ -22,7 +22,8 @@
     "db:down": "docker compose -f compose.yaml -f compose.dev.yaml down",
     "demo:up": "docker compose --profile demo up --build --detach --wait",
     "demo:down": "docker compose --profile demo down",
-    "demo:smoke": "sh scripts/smoke-container.sh"
+    "demo:smoke": "sh scripts/smoke-container.sh",
+    "e2e": "playwright test"
   },
   "dependencies": {
     "next": "16.4.0",
@@ -33,6 +34,9 @@
     "zod": "4.6.5"
   },
   "devDependencies": {
+    "@axe-core/playwright": "4.13.0",
+    "@playwright/test": "1.64.0",
+    "@tailwindcss/postcss": "4.3.3",
     "@types/node": "24.19.1",
     "@types/pg": "8.23.1",
     "@types/react": "19.3.0",
@@ -42,6 +46,7 @@
     "eslint-config-prettier": "10.1.8",
     "knip": "6.40.0",
     "prettier": "3.9.9",
+    "tailwindcss": "4.3.3",
     "typescript": "6.0.3",
     "vitest": "5.0.3"
   }
