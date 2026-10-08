@@ -1,0 +1,45 @@
+name: User story
+description: A user-facing capability, written from the user's point of view.
+title: "feat: "
+labels: ["type: feature"]
+body:
+  - type: textarea
+    id: story
+    attributes:
+      label: User story
+      description: Who needs what, and why.
+      placeholder: "As a <role>, I want <capability> so that <benefit>."
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: Testable conditions. One scenario per line, Given / When / Then.
+      placeholder: |
+        - [ ] Given ..., when ..., then ...
+    validations:
+      required: true
+  - type: textarea
+    id: quality
+    attributes:
+      label: Quality notes
+      description: Security, accessibility, performance, privacy or i18n points specific to this story.
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority (MoSCoW)
+      options: ["Must", "Should", "Could"]
+    validations:
+      required: true
+  - type: dropdown
+    id: estimate
+    attributes:
+      label: Estimate (story points)
+      options: ["1", "2", "3", "5", "8", "13 — too big, split it"]
+    validations:
+      required: true
+  - type: textarea
+    id: out
+    attributes:
+      label: Out of scope

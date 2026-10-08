@@ -1,0 +1,39 @@
+name: Bug report
+description: Something does not behave as specified.
+title: "fix: "
+labels: ["type: bug"]
+body:
+  - type: textarea
+    id: observed
+    attributes:
+      label: Observed behaviour
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behaviour
+      description: Quote the acceptance criterion or the specification when possible.
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. ...
+        2. ...
+    validations:
+      required: true
+  - type: input
+    id: env
+    attributes:
+      label: Environment
+      placeholder: "commit SHA, browser and version, locale"
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity
+      options: ["Blocking", "Major", "Minor"]
+    validations:
+      required: true

@@ -1,0 +1,14 @@
+{
+  // Rules: https://github.com/DavidAnson/markdownlint/blob/main/doc/Rules.md
+  "config": {
+    "default": true,
+    // Prose is not hard-wrapped: one paragraph per line keeps diffs readable.
+    "MD013": false,
+    // The changelog repeats "Added", "Changed"... under each version.
+    "MD024": { "siblings_only": true },
+    // Table cells are not padded to a fixed width.
+    "MD060": false
+  },
+  "globs": ["**/*.md"],
+  "ignores": ["node_modules", ".github/pull_request_template.md", "design/mockup"]
+}

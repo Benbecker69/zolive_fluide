@@ -1,0 +1,19 @@
+# Configuration of the scheduled external link check (.github/workflows/links.yml).
+
+max_retries = 3
+retry_wait_time = 5
+timeout = 30
+max_concurrency = 8
+
+# 429 = rate limited: the page exists.
+accept = [200, 206, 429]
+
+# These official sites answer 403 or an empty body to automated clients
+# (verified on 2026-10-08). They are checked by hand when the bibliography is reviewed.
+exclude = [
+  "legifrance\\.gouv\\.fr",
+  "economie\\.gouv\\.fr",
+  "eur-lex\\.europa\\.eu",
+  "www\\.iso\\.org",
+  "francecompetences\\.fr",
+]
