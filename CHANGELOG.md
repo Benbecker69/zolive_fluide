@@ -32,3 +32,4 @@ The format is based on [Keep a Changelog 1.1.0](https://keepachangelog.com/en/1.
 - Customer accounts: sign up, sign in and sign out with e-mail and password, Argon2id hashing, sessions stored in the database and revoked on sign-out.
 - Sign-in throttling per account with counters in the database, and a structured security log that never contains a password, an e-mail address or a token.
 - Account page: name and delivery address, with the customer always taken from the session; return to the requested page after sign-in.
+- Cart kept at sign-in and sign-up: the guest cart joins the account, quantities are added up to the available stock, and the device forgets the cart at sign-out.

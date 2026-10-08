@@ -22,3 +22,8 @@ export async function writeCartId(cartId: string): Promise<void> {
     maxAge: THIRTY_DAYS,
   });
 }
+
+/** Forgets the cart on this device, for example when the customer signs out. */
+export async function clearCartId(): Promise<void> {
+  (await cookies()).delete(CART_COOKIE);
+}
