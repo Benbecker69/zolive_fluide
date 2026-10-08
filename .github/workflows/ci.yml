@@ -43,6 +43,22 @@ jobs:
       - name: Build
         run: pnpm build
 
+  container:
+    name: container
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      # Same path as a fresh clone: the documented example file becomes the configuration.
+      - name: Create the configuration from the example
+        run: cp .env.example .env
+      # Builds the production image, starts the demonstration profile and checks health,
+      # unprivileged user, unpublished database and start-up validation.
+      - name: Smoke test the demonstration profile
+        run: sh scripts/smoke-container.sh
+
   dependency-audit:
     name: dependency-audit
     runs-on: ubuntu-24.04
