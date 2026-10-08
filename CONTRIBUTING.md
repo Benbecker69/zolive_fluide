@@ -76,7 +76,7 @@ Je ne considère une issue comme terminée que si **toutes** les conditions suiv
 
 - [ ] Les critères d'acceptation de l'issue sont satisfaits et démontrés
 - [ ] Le code est couvert par des tests au bon niveau (unitaire, intégration, bout en bout)
-- [ ] La CI est verte : lint, typage, tests, build
+- [ ] La CI est verte : mise en forme, lint, typage, code mort, tests, build, audit des dépendances, analyse de sécurité
 - [ ] Aucune régression d'accessibilité, de performance ou de sécurité par rapport aux seuils de l'audit
 - [ ] Les textes visibles existent en français et en anglais
 - [ ] La documentation, les ADR et le `CHANGELOG.md` sont à jour

@@ -7,3 +7,21 @@ updates:
       interval: weekly
     commit-message:
       prefix: "chore(ci)"
+
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "chore(deps)"
+    groups:
+      # Minor and patch updates arrive together; majors arrive one by one.
+      minor-and-patch:
+        update-types: [minor, patch]
+    ignore:
+      # Pinned one major behind on purpose: see ADR 0002 (TypeScript) and ADR 0011 (ESLint).
+      - dependency-name: typescript
+        update-types: ["version-update:semver-major"]
+      - dependency-name: eslint
+        update-types: ["version-update:semver-major"]

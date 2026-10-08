@@ -16,7 +16,9 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "test": "vitest run",
-    "check": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm test && pnpm build"
+    "check": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm knip && pnpm test && pnpm build",
+    "knip": "knip",
+    "audit": "pnpm audit --audit-level=high"
   },
   "dependencies": {
     "next": "16.4.0",
@@ -30,6 +32,7 @@
     "eslint": "9.39.5",
     "eslint-config-next": "16.4.0",
     "eslint-config-prettier": "10.1.8",
+    "knip": "6.40.0",
     "prettier": "3.9.9",
     "typescript": "6.0.3",
     "vitest": "5.0.3"

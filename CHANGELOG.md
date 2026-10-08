@@ -17,3 +17,4 @@ The format is based on [Keep a Changelog 1.1.0](https://keepachangelog.com/en/1.
 - Method guides: running a project, handling a technical subject, checklists.
 - Sprint 0 review and retrospective.
 - Application skeleton: Next.js 16, strict TypeScript, ESLint with enforced layer boundaries, Prettier, Vitest.
+- Application pipeline: formatting, lint, type check, dead code detection, tests, build, dependency audit and static security analysis on every pull request.

@@ -20,6 +20,7 @@ Je relis le registre à chaque fin de sprint. Un risque clos reste dans le table
 | R-08 | Fuite d'un secret dans le dépôt public | 1 | 3 | 3 | Fichiers `.env` ignorés ; détection de secrets et protection à la poussée activées [S46] | Alerte GitHub | Révoquer le secret, puis réécrire l'historique |
 | R-09 | Les tests de bout en bout deviennent instables et sont ignorés | 2 | 2 | 4 | Jeu de données déterministe ; base réinitialisée avant chaque exécution ; sélecteurs par rôle | Un test échoue de manière intermittente | Corriger ou mettre en quarantaine sous 24 h, avec une issue ; jamais de relance « pour voir » |
 | R-15 | ESLint épinglé en version 9, marquée dépréciée sur npm, parce que trois greffons d'`eslint-config-next` ne déclarent pas la version 10 [S41] | 3 | 1 | 3 | Épinglage explicite (ADR 0011) ; tests qui prouvent que les règles de couches sont actives | Publication d'un `eslint-config-next` dont tous les greffons déclarent ESLint 10 | Monter de version dans une pull request dédiée |
+| R-16 | Vulnérabilité haute connue et sans correctif publié dans `braces` 3.0.3 (GHSA-vfj7-8cjw-p6xm), dépendance transitive du greffon de lint de Next.js | 3 | 1 | 3 | Avis ignoré explicitement dans `pnpm-workspace.yaml`, avec sa justification : le paquet n'est atteint qu'au moment du lint, jamais à l'exécution, et ne reçoit que des motifs écrits dans ce dépôt | Publication de `braces` 3.0.4 ou d'une chaîne de dépendances qui ne l'utilise plus | Retirer l'exception et vérifier que l'audit passe sans elle |
 
 ## Risques de projet
 
