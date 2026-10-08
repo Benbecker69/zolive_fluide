@@ -24,11 +24,11 @@ test.describe("product page", () => {
     await expect(page.getByText("soit 44 € le litre")).toBeVisible();
 
     await page.getByRole("button", { name: "Augmenter la quantité" }).click();
-    await expect(page.getByText("Total : 66 €")).toBeVisible();
+    await expect(page.getByRole("button", { name: "Ajouter au panier 66 €" })).toBeVisible();
 
     // Changing the format starts again from one unit.
     await page.getByRole("radio", { name: "25 cl" }).check();
-    await expect(page.getByText("Total : 14 €")).toBeVisible();
+    await expect(page.getByRole("button", { name: "Ajouter au panier 14 €" })).toBeVisible();
   });
 
   test("lets the keyboard choose a format with the arrow keys", async ({ page }) => {
