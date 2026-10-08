@@ -167,3 +167,38 @@ export async function listRelatedProducts(
     .orderBy(desc(sql`${products.categoryId} = (${current})`), asc(products.position))
     .limit(limit);
 }
+
+/** Products highlighted on the home page, in their display order. */
+export async function listFeaturedProducts(
+  locale: CatalogueLocale,
+  limit: number,
+): Promise<ProductSummary[]> {
+  return getDb()
+    .select(summaryColumns(locale))
+    .from(products)
+    .innerJoin(variants, and(eq(variants.productId, products.id), eq(variants.isDefault, true)))
+    .where(eq(products.isFeatured, true))
+    .orderBy(asc(products.position))
+    .limit(limit);
+}
+
+export type CategoryTile = CategorySummary & Pick<ProductSummary, "tint" | "packshot" | "label">;
+
+/**
+ * Categories with a visual for their tile: the one of their first product.
+ * A category without any product has no tile.
+ */
+export async function listCategoryTiles(locale: CatalogueLocale): Promise<CategoryTile[]> {
+  const french = locale === "fr";
+  return getDb()
+    .selectDistinctOn([categories.position], {
+      slug: categories.slug,
+      name: french ? categories.nameFr : categories.nameEn,
+      tint: products.tint,
+      packshot: products.packshot,
+      label: french ? products.labelFr : products.labelEn,
+    })
+    .from(categories)
+    .innerJoin(products, eq(products.categoryId, categories.id))
+    .orderBy(asc(categories.position), asc(products.position));
+}
