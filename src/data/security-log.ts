@@ -16,6 +16,9 @@ type SecurityEvent =
   | "auth.sign_in.failed"
   | "auth.sign_in.locked"
   | "auth.sign_out"
+  | "account.deleted"
+  | "account.delete.refused"
+  | "account.delete.locked"
   | "access.denied";
 
 type Fields = { userId?: string; account?: string; reason?: string; resource?: string };

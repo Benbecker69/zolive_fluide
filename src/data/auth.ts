@@ -20,6 +20,7 @@ import { clearFailures, recordFailure, secondsUntilUnlocked } from "./sign-in-th
  * - E-mail and password only; passwords hashed with Argon2id.
  * - Sessions live in the database, so signing out revokes them.
  * - The session cookie is HttpOnly, Secure and SameSite=Lax.
+ * - An account can be deleted by its owner, after confirming with the password.
  * - The library is only called from the server: its HTTP endpoints are not mounted,
  *   which keeps the public surface to the server actions of the site.
  */
@@ -36,6 +37,8 @@ function createAuth() {
       maxPasswordLength: PASSWORD_MAX_LENGTH,
       password: { hash: hashPassword, verify: verifyPassword },
     },
+    // No verification e-mail is configured: a confirmed deletion is immediate.
+    user: { deleteUser: { enabled: true } },
     advanced: {
       cookiePrefix: "zolive",
       useSecureCookies: true,
@@ -140,4 +143,61 @@ export async function signOut(headers: Headers): Promise<void> {
     // Signing out without a session is not an error for the visitor.
     if (!(error instanceof APIError)) throw error;
   }
+}
+
+export type DeleteAccountResult =
+  | { ok: true }
+  | { ok: false; reason: "unauthenticated" | "wrong-password" }
+  | { ok: false; reason: "too-many-attempts"; retryAfterSeconds: number };
+
+async function deleteUserWithPassword(headers: Headers, password: string): Promise<boolean> {
+  // The library only checks a password that is not empty, and would then accept a recent
+  // session alone: an empty password must never reach it.
+  if (password === "") return false;
+  try {
+    await getAuth().api.deleteUser({ body: { password }, headers });
+    return true;
+  } catch (error) {
+    if (error instanceof APIError) return false;
+    throw error;
+  }
+}
+
+/**
+ * Deletes the account of the signed-in user of a request, once confirmed with the password.
+ * The user comes from the session, never from the caller. The database then removes what
+ * belongs to the account: sessions, credentials, delivery address and cart.
+ *
+ * A wrong password counts as a failed sign-in for the account, so this form cannot be used
+ * to guess a password without limit from a session left open.
+ */
+export async function deleteAccount(
+  headers: Headers,
+  password: string,
+  now: Date = new Date(),
+): Promise<DeleteAccountResult> {
+  const user = await getUserFromHeaders(headers);
+  if (!user) {
+    logSecurityEvent("access.denied", { resource: "account", reason: "no-session" });
+    return { ok: false, reason: "unauthenticated" };
+  }
+
+  const retryAfterSeconds = await secondsUntilUnlocked(user.email, now);
+  if (retryAfterSeconds > 0) {
+    logSecurityEvent("account.delete.locked", { userId: user.id });
+    return { ok: false, reason: "too-many-attempts", retryAfterSeconds };
+  }
+
+  if (!(await deleteUserWithPassword(headers, password))) {
+    const locked = await recordFailure(user.email, now);
+    logSecurityEvent("account.delete.refused", {
+      userId: user.id,
+      reason: locked ? "limit-reached" : "wrong-password",
+    });
+    return { ok: false, reason: "wrong-password" };
+  }
+
+  await clearFailures(user.email);
+  logSecurityEvent("account.deleted", { userId: user.id });
+  return { ok: true };
 }
