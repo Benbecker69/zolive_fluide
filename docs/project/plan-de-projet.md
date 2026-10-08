@@ -61,7 +61,7 @@ J'utilise MoSCoW [S14]. Répartition de l'effort estimé du backlog :
 
 J'estime en points d'histoire sur la suite 1, 2, 3, 5, 8, par comparaison entre stories et non en heures. Une story estimée à 13 est trop grosse : je la découpe avant de la prendre.
 
-Je n'ai pas encore de vélocité. La répartition par sprint ci-dessous est une **hypothèse de départ** ; je mesurerai la vélocité à la fin du sprint 1 et je replanifierai les sprints suivants avec le chiffre réel.
+La répartition par sprint ci-dessous était une **hypothèse de départ**. La vélocité mesurée au sprint 1 est de 35 points ; je l'utilise comme plafond pour les sprints suivants, avec les réserves notées dans la [revue du sprint 1](sprints/sprint-1.md).
 
 ### *Definition of Ready*
 
@@ -71,7 +71,8 @@ Je ne prends une issue dans un sprint que si :
 - elle a des critères d'acceptation testables ;
 - elle cite les exigences de l'audit qu'elle touche ;
 - elle est estimée, à 8 points au plus ;
-- elle ne dépend d'aucune issue non terminée, ou la dépendance est planifiée avant elle.
+- elle ne dépend d'aucune issue non terminée, ou la dépendance est planifiée avant elle ;
+- chacun de ses critères est démontrable avec ce qui existe déjà sur `main` (ajout de la rétrospective du sprint 1).
 
 ### *Definition of Done*
 

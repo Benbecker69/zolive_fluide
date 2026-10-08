@@ -8,13 +8,13 @@ Ce dépôt contient le site et la démarche qui l'encadre : audit de cadrage, d�
 
 ## État du projet
 
-**Sprint 1 en cours.** Le cadrage est terminé et validé : voir la [revue et la rétrospective du sprint 0](docs/project/sprints/sprint-0.md).
+**Sprint 1 terminé, sprint 2 à venir.** Un visiteur parcourt le catalogue en français et en anglais. Voir les revues et rétrospectives du [sprint 0](docs/project/sprints/sprint-0.md) et du [sprint 1](docs/project/sprints/sprint-1.md).
 
 | Sprint | Objectif | État |
 | --- | --- | --- |
 | 0 — Cadrage | Savoir quoi construire, comment, et comment le prouver | Terminé |
-| 1 — Fondations et catalogue | Un visiteur parcourt le catalogue en français et en anglais | En cours |
-| 2 — Panier et comptes | Un client remplit un panier et possède un compte | À venir |
+| 1 — Fondations et catalogue | Un visiteur parcourt le catalogue en français et en anglais | Terminé |
+| 2 — Panier et comptes | Un client remplit un panier et possède un compte | Prochain |
 | 3 — Commande | Un client passe commande et la retrouve dans son historique | À venir |
 | 4 — Durcissement et audit | Le site tient ses exigences, et je le prouve | À venir |
 
