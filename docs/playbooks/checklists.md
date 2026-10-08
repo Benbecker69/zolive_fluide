@@ -47,6 +47,7 @@ Je relis sur la page de la pull request, pas dans mon éditeur, et après une pa
 - [ ] Les cas d'erreur sont traités, pas seulement le cas nominal
 - [ ] Toute entrée venant de l'utilisateur est validée côté serveur
 - [ ] Toute lecture ou écriture de données d'un client vérifie la session et la propriété
+- [ ] Tout comportement de sécurité confié à une bibliothèque est vérifié dans sa documentation ou son code, et verrouillé par un test
 - [ ] Aucune action serveur ne renvoie plus que ce dont l'interface a besoin
 - [ ] Rien n'importe la base de données hors de la couche d'accès aux données
 - [ ] Le changement améliore la santé du code, ou au moins ne la dégrade pas

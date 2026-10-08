@@ -61,7 +61,7 @@ J'utilise MoSCoW [S14]. Répartition de l'effort estimé du backlog :
 
 J'estime en points d'histoire sur la suite 1, 2, 3, 5, 8, par comparaison entre stories et non en heures. Une story estimée à 13 est trop grosse : je la découpe avant de la prendre.
 
-La répartition par sprint ci-dessous était une **hypothèse de départ**. La vélocité mesurée au sprint 1 est de 35 points ; je l'utilise comme plafond pour les sprints suivants, avec les réserves notées dans la [revue du sprint 1](sprints/sprint-1.md).
+La répartition par sprint ci-dessous était une **hypothèse de départ**. La vélocité mesurée est de 35 points au sprint 1 et de 30 points au sprint 2, soit 32,5 en moyenne ; je l'utilise comme plafond pour les sprints suivants, avec les réserves notées dans les revues du [sprint 1](sprints/sprint-1.md) et du [sprint 2](sprints/sprint-2.md).
 
 ### *Definition of Ready*
 

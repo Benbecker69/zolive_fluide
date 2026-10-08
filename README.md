@@ -8,13 +8,13 @@ Ce dépôt contient le site et la démarche qui l'encadre : audit de cadrage, d�
 
 ## État du projet
 
-**Sprint 2 en cours.** Un visiteur parcourt le catalogue en français et en anglais. Voir les revues et rétrospectives du [sprint 0](docs/project/sprints/sprint-0.md) et du [sprint 1](docs/project/sprints/sprint-1.md).
+**Sprint 2 terminé.** Un visiteur parcourt le catalogue en français et en anglais, remplit un panier et possède un compte. Voir les revues et rétrospectives du [sprint 0](docs/project/sprints/sprint-0.md), du [sprint 1](docs/project/sprints/sprint-1.md) et du [sprint 2](docs/project/sprints/sprint-2.md).
 
 | Sprint | Objectif | État |
 | --- | --- | --- |
 | 0 — Cadrage | Savoir quoi construire, comment, et comment le prouver | Terminé |
 | 1 — Fondations et catalogue | Un visiteur parcourt le catalogue en français et en anglais | Terminé |
-| 2 — Panier et comptes | Un client remplit un panier et possède un compte | En cours |
+| 2 — Panier et comptes | Un client remplit un panier et possède un compte | Terminé |
 | 3 — Commande | Un client passe commande et la retrouve dans son historique | À venir |
 | 4 — Durcissement et audit | Le site tient ses exigences, et je le prouve | À venir |
 
@@ -74,7 +74,7 @@ pnpm db:setup
 pnpm dev
 ```
 
-Le site affiche la page d'accueil (`/fr`, `/en`), la boutique, les fiches produit, le panier (`/fr/panier`) et la charte graphique vivante sur `/fr/styleguide`. Les comptes clients (`/fr/inscription`, `/fr/connexion`, `/fr/compte`) sont en place ; la page de compte s'étoffe dans la suite du sprint 2. La maquette se consulte en ouvrant les fichiers de [`design/mockup/`](design/mockup/) dans un navigateur.
+Le site affiche la page d'accueil (`/fr`, `/en`), la boutique, les fiches produit, le panier (`/fr/panier`) et la charte graphique vivante sur `/fr/styleguide`. Les comptes clients (`/fr/inscription`, `/fr/connexion`, `/fr/compte`) sont en place : profil, adresse de livraison, suppression du compte. Le panier rempli avant la connexion rejoint le compte. La commande et le paiement arrivent au sprint 3. La maquette se consulte en ouvrant les fichiers de [`design/mockup/`](design/mockup/) dans un navigateur.
 
 ### Configuration
 
