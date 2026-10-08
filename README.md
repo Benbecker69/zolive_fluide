@@ -66,7 +66,9 @@ Le site répond sur `http://localhost:3000`. Pour l'instant, il n'affiche qu'une
 | `pnpm typecheck` | Vérification des types en mode strict |
 | `pnpm test` | Tests unitaires et tests de l'outillage |
 | `pnpm format` / `pnpm format:check` | Mise en forme du code |
-| `pnpm check` | Tout ce que la CI vérifie, dans l'ordre |
+| `pnpm knip` | Détection du code et des dépendances inutilisés |
+| `pnpm audit` | Vulnérabilités connues des dépendances, bloquant à partir du niveau « haut » |
+| `pnpm check` | Ce que la CI vérifie sur l'application, dans l'ordre |
 
 ### Organisation du code
 
