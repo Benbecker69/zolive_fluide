@@ -14,7 +14,8 @@ const tintClass: Record<Tint, string> = {
 };
 
 type ProductCardProps = {
-  href: string;
+  /** Product page; without it the name is plain text. */
+  href?: string;
   name: string;
   /** Second line: variety and format, for example "Picholine · 50 cl". */
   detail: string;
@@ -60,9 +61,13 @@ export function ProductCard({
       <div className="flex items-baseline justify-between gap-3">
         <div className="flex flex-col gap-0.5">
           <h3 className="text-xl leading-tight tracking-[-0.02em]">
-            <Link href={href} className="hover:opacity-80">
-              {name}
-            </Link>
+            {href ? (
+              <Link href={href} className="hover:opacity-80">
+                {name}
+              </Link>
+            ) : (
+              name
+            )}
           </h3>
           <span className="text-sm text-muted">{detail}</span>
         </div>

@@ -44,6 +44,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps<"/[
           <AnnouncementBar>{t("announcement")}</AnnouncementBar>
           <SiteHeader
             logo={logo}
+            nav={{ label: t("mainNav"), items: [{ href: "/boutique", label: t("navShop") }] }}
             actions={
               <LanguageSwitcher label={t("languageNav")} current={locale} languages={LANGUAGES} />
             }
