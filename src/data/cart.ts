@@ -1,15 +1,17 @@
 import "server-only";
 
-import { and, asc, eq, sql } from "drizzle-orm";
+import { and, asc, eq, isNull, sql } from "drizzle-orm";
 
+import { user } from "./auth-schema";
 import type { CatalogueLocale } from "./catalogue";
 import { getDb } from "./db";
 import { cartItems, carts, products, variants } from "./schema";
 
 /**
  * Cart storage. Access rule: a cart belongs to whoever presents its identifier, which only
- * ever comes from the visitor's own cookie. No function here takes a price from its caller:
- * amounts are read from the catalogue each time.
+ * ever comes from the visitor's own cookie. Once the visitor signs in, the cart is also tied
+ * to the account, and the cookie is given back at sign-out. No function here takes a price
+ * from its caller: amounts are read from the catalogue each time.
  */
 
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
@@ -144,4 +146,74 @@ export async function removeCartLine(cartId: string | undefined, sku: string): P
   await getDb()
     .delete(cartItems)
     .where(and(eq(cartItems.cartId, cartId), eq(cartItems.variantId, sql`(${variant})`)));
+}
+
+/**
+ * Gives the guest cart of a visitor to the account they just signed in to, and returns the
+ * cart the account now uses, if any.
+ *
+ * - The account has no cart: the guest cart becomes its cart.
+ * - The account already has one: the guest lines are added to it, each quantity capped by the
+ *   stock and by the limit per line, then the guest cart is deleted.
+ *
+ * Only a cart without owner can be adopted: a cart that belongs to another account is ignored.
+ * `userId` comes from the authentication that has just succeeded, never from the browser.
+ */
+export async function adoptCart(
+  guestCartId: string | undefined,
+  userId: string,
+  maxPerLine: number,
+): Promise<string | undefined> {
+  return getDb().transaction(async (tx) => {
+    // Two sign-ins of the same account at the same moment wait for each other here, so both
+    // cannot decide at once that the account has no cart yet.
+    await tx.select({ id: user.id }).from(user).where(eq(user.id, userId)).for("update");
+    const [owned] = await tx.select({ id: carts.id }).from(carts).where(eq(carts.userId, userId));
+
+    let guest: { id: string } | undefined;
+    if (guestCartId && UUID.test(guestCartId)) {
+      [guest] = await tx
+        .select({ id: carts.id })
+        .from(carts)
+        .where(and(eq(carts.id, guestCartId), isNull(carts.userId)))
+        .for("update");
+    }
+    if (!guest) return owned?.id;
+
+    if (!owned) {
+      await tx.update(carts).set({ userId, updatedAt: new Date() }).where(eq(carts.id, guest.id));
+      return guest.id;
+    }
+
+    const guestLines = await tx
+      .select({
+        variantId: cartItems.variantId,
+        quantity: cartItems.quantity,
+        stock: variants.stock,
+      })
+      .from(cartItems)
+      .innerJoin(variants, eq(variants.id, cartItems.variantId))
+      .where(eq(cartItems.cartId, guest.id));
+
+    for (const line of guestLines) {
+      const limit = Math.min(line.stock, maxPerLine);
+      // A format that is no longer in stock is left out rather than blocking the sign-in.
+      if (limit < 1) continue;
+      await tx
+        .insert(cartItems)
+        .values({
+          cartId: owned.id,
+          variantId: line.variantId,
+          quantity: Math.min(line.quantity, limit),
+        })
+        .onConflictDoUpdate({
+          target: [cartItems.cartId, cartItems.variantId],
+          set: { quantity: sql`least(${cartItems.quantity} + ${line.quantity}, ${limit})` },
+        });
+    }
+
+    await tx.delete(carts).where(eq(carts.id, guest.id));
+    await tx.update(carts).set({ updatedAt: new Date() }).where(eq(carts.id, owned.id));
+    return owned.id;
+  });
 }

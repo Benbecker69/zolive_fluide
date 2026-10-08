@@ -56,9 +56,10 @@ function getAuth(): Auth {
 
 export type CurrentUser = { id: string; name: string; email: string };
 
-export type SignUpResult = { ok: true } | { ok: false; reason: "email-taken" | "rejected" };
+export type SignUpResult =
+  { ok: true; userId: string } | { ok: false; reason: "email-taken" | "rejected" };
 export type SignInResult =
-  | { ok: true }
+  | { ok: true; userId: string }
   | { ok: false; reason: "invalid-credentials" }
   | { ok: false; reason: "too-many-attempts"; retryAfterSeconds: number };
 
@@ -83,7 +84,7 @@ export async function signUp(
   try {
     const { user } = await getAuth().api.signUpEmail({ body: input, headers });
     logSecurityEvent("auth.sign_up.succeeded", { userId: user.id });
-    return { ok: true };
+    return { ok: true, userId: user.id };
   } catch (error) {
     if (error instanceof APIError) {
       const reason = error.status === "UNPROCESSABLE_ENTITY" ? "email-taken" : "rejected";
@@ -116,7 +117,7 @@ export async function signIn(
     const { user } = await getAuth().api.signInEmail({ body: input, headers });
     await clearFailures(input.email);
     logSecurityEvent("auth.sign_in.succeeded", { userId: user.id });
-    return { ok: true };
+    return { ok: true, userId: user.id };
   } catch (error) {
     if (!(error instanceof APIError)) throw error;
 

@@ -116,6 +116,10 @@ export const variants = pgTable(
  */
 export const carts = pgTable("carts", {
   id: uuid("id").primaryKey().defaultRandom(),
+  /** Owner once the visitor has signed in: at most one cart per account. Null for a guest. */
+  userId: text("user_id")
+    .unique()
+    .references(() => user.id, { onDelete: "cascade" }),
   createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
   updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
 });
