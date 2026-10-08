@@ -83,6 +83,7 @@ export async function ShopListing({ locale, searchParams }: ShopListingProps) {
           {products.map((product) => (
             <li key={product.slug}>
               <ProductCard
+                href={`/produits/${product.slug}`}
                 name={product.name}
                 detail={`${product.tagline} · ${product.format}`}
                 price={formatPrice(product.priceCents, locale)}

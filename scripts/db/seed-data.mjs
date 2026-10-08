@@ -100,6 +100,8 @@ export const products = [
         stock: 30,
         isDefault: true,
       },
+      // Out of stock on purpose: exercises the "unavailable" state of the product page.
+      { sku: "FN-75", format: "75 cl", volumeMl: 750, priceCents: 3600, stock: 0 },
     ],
   },
   {

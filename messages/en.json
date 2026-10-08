@@ -41,5 +41,25 @@
     "count": "{count, plural, =0 {No product} one {# product} other {# products}}",
     "newHarvest": "New harvest",
     "empty": "No product in this category for now."
+  },
+  "product": {
+    "breadcrumb": "Breadcrumb",
+    "home": "Home",
+    "shop": "Shop",
+    "newHarvest": "New harvest",
+    "format": "Size",
+    "unavailable": "unavailable",
+    "perLitre": "that is {price} per litre",
+    "quantity": "Quantity",
+    "decrease": "Decrease quantity",
+    "increase": "Increase quantity",
+    "total": "Total: <strong>{amount}</strong>",
+    "tastingTitle": "Tasting <em>profile</em>",
+    "tastingIntro": "Three markers are enough to read an olive oil: fruitiness on the nose, bitterness on the tongue, pungency at the back of the throat.",
+    "fruitiness": "Fruitiness",
+    "bitterness": "Bitterness",
+    "pungency": "Pungency",
+    "scale": "{label}: {note} out of 5",
+    "relatedTitle": "Also worth <em>tasting</em>"
   }
 }
