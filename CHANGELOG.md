@@ -16,3 +16,4 @@ The format is based on [Keep a Changelog 1.1.0](https://keepachangelog.com/en/1.
 - Project plan, target architecture and backlog of 29 issues over four sprints.
 - Method guides: running a project, handling a technical subject, checklists.
 - Sprint 0 review and retrospective.
+- Application skeleton: Next.js 16, strict TypeScript, ESLint with enforced layer boundaries, Prettier, Vitest.

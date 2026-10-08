@@ -19,6 +19,7 @@ Je relis le registre à chaque fin de sprint. Un risque clos reste dans le table
 | R-07 | Régression d'accessibilité introduite par un composant interactif | 2 | 2 | 4 | axe-core en CI dès le premier composant ; éléments HTML natifs en priorité | Violation « sérieuse » ou « critique » en CI | La pull request n'est pas fusionnée |
 | R-08 | Fuite d'un secret dans le dépôt public | 1 | 3 | 3 | Fichiers `.env` ignorés ; détection de secrets et protection à la poussée activées [S46] | Alerte GitHub | Révoquer le secret, puis réécrire l'historique |
 | R-09 | Les tests de bout en bout deviennent instables et sont ignorés | 2 | 2 | 4 | Jeu de données déterministe ; base réinitialisée avant chaque exécution ; sélecteurs par rôle | Un test échoue de manière intermittente | Corriger ou mettre en quarantaine sous 24 h, avec une issue ; jamais de relance « pour voir » |
+| R-15 | ESLint épinglé en version 9, marquée dépréciée sur npm, parce que trois greffons d'`eslint-config-next` ne déclarent pas la version 10 [S41] | 3 | 1 | 3 | Épinglage explicite (ADR 0011) ; tests qui prouvent que les règles de couches sont actives | Publication d'un `eslint-config-next` dont tous les greffons déclarent ESLint 10 | Monter de version dans une pull request dédiée |
 
 ## Risques de projet
 

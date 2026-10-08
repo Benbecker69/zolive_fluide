@@ -1,0 +1,12 @@
+# Generated
+.next
+node_modules
+pnpm-lock.yaml
+next-env.d.ts
+coverage
+
+# The mockup is a frozen design reference, not source code
+design/mockup
+
+# Markdown is checked by markdownlint
+*.md
