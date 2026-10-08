@@ -193,6 +193,27 @@ Trois règles encadrent ce passage :
 
 Le domaine `compte` appelle ici le domaine `panier`, et jamais l'inverse.
 
+## La suppression du compte
+
+Le client supprime son compte depuis la page du compte, en confirmant avec son mot de passe (exigence LEG-06). La page annonce avant la confirmation ce qui est supprimé et ce qui est conservé.
+
+| Donnée | Sort | Mécanisme |
+| --- | --- | --- |
+| Nom, adresse e-mail, mot de passe haché | Supprimés | Suppression de l'utilisateur et de ses identifiants |
+| Sessions, sur tous les appareils | Supprimées | Clé étrangère en cascade |
+| Adresse de livraison | Supprimée | Clé étrangère en cascade |
+| Panier enregistré | Supprimé | Clé étrangère en cascade |
+| Compteur de tentatives de connexion | Supprimé | Remise à zéro après la suppression |
+| Journaux de sécurité | Conservés | Ils ne contiennent ni nom, ni adresse e-mail, ni mot de passe |
+
+Les commandes n'existent pas encore : leur conservation sans identifiant personnel est traitée avec leur création, au sprint 3.
+
+Trois règles encadrent cette action :
+
+- le compte supprimé est celui de la session, jamais un identifiant reçu du navigateur (SEC-01) ;
+- la fonction de la couche `data` refuse un mot de passe vide avant d'appeler la bibliothèque d'authentification. En lisant son code, j'ai constaté qu'elle ne vérifie le mot de passe que s'il est fourni, et qu'elle accepte sinon une session récente seule. Un test d'intégration verrouille ce refus ;
+- un mot de passe erroné compte comme un échec de connexion du compte (ADR 0014) : une session laissée ouverte ne permet donc pas de deviner le mot de passe sans limite.
+
 ## Sources
 
 Les identifiants `[Sxx]` renvoient à la [bibliographie de l'audit](../audit/sources.md).

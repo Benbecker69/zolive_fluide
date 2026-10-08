@@ -4,7 +4,9 @@ import { revalidatePath } from "next/cache";
 import { headers } from "next/headers";
 import { getLocale } from "next-intl/server";
 
+import { deleteAccount } from "@/data/auth";
 import { renameMe, saveMyAddress } from "@/data/profile";
+import { leaveCartBehind } from "@/features/cart/hand-over";
 import { redirect } from "@/i18n/navigation";
 
 import {
@@ -26,6 +28,12 @@ export type AddressFormState =
   | { status: "idle" }
   | { status: "saved" }
   | { status: "invalid"; fields: AddressField[]; values: Record<AddressField, string> };
+
+export type DeleteAccountFormState =
+  | { status: "idle" }
+  | { status: "password-required" }
+  | { status: "wrong-password" }
+  | { status: "locked"; minutes: number };
 
 const text = (value: FormDataEntryValue | null) => (typeof value === "string" ? value : "");
 
@@ -69,4 +77,25 @@ export async function saveAddressAction(
 
   revalidatePath("/[locale]/compte", "page");
   return { status: "saved" };
+}
+
+/** The password is the confirmation: it is checked in the data layer and never sent back. */
+export async function deleteAccountAction(
+  _previous: DeleteAccountFormState,
+  formData: FormData,
+): Promise<DeleteAccountFormState> {
+  const password = text(formData.get("password"));
+  if (password === "") return { status: "password-required" };
+
+  const result = await deleteAccount(await headers(), password);
+  if (!result.ok) {
+    if (result.reason === "unauthenticated") return toSignIn();
+    return result.reason === "too-many-attempts"
+      ? { status: "locked", minutes: Math.ceil(result.retryAfterSeconds / 60) }
+      : { status: "wrong-password" };
+  }
+
+  // The cart was deleted with the account: the device stops pointing at it.
+  await leaveCartBehind();
+  return redirect({ href: "/compte/supprime", locale: await getLocale() });
 }

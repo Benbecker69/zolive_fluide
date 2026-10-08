@@ -2,12 +2,12 @@ import { getLocale, getTranslations } from "next-intl/server";
 import type { ReactNode } from "react";
 
 import { redirect } from "@/i18n/navigation";
-import { Button } from "@/ui/button";
+import { Button, ButtonLink } from "@/ui/button";
 
 import { SignInForm, SignUpForm } from "./account-forms";
 import { signOutAction } from "./actions";
 import { getCurrentUser, getProfile } from "./current-user";
-import { AddressForm, NameForm } from "./profile-forms";
+import { AddressForm, DeleteAccountForm, NameForm } from "./profile-forms";
 import { safeNextPath } from "./profile-schemas";
 
 function AccountShell({
@@ -47,6 +47,9 @@ async function redirectIfSignedIn(next: string): Promise<void> {
 }
 
 type RawParams = Record<string, string | string[] | undefined>;
+
+/** What the database removes with the account, in the order shown to the customer. */
+const REMOVED_WITH_ACCOUNT = ["identity", "address", "sessions", "cart"] as const;
 
 export async function SignInPage({ searchParams }: { searchParams: RawParams }) {
   const next = safeNextPath(searchParams.next);
@@ -111,6 +114,38 @@ export async function AccountHomePage() {
           </Button>
         </form>
       </Section>
+
+      <Section id="delete-title" title={t("delete.title")}>
+        <p className="text-[1.0625rem]">{t("delete.intro")}</p>
+        <div className="flex flex-col gap-2">
+          <h3 className="text-xl">{t("delete.removedTitle")}</h3>
+          <ul className="list-disc pl-5 text-[0.9375rem] text-muted">
+            {REMOVED_WITH_ACCOUNT.map((item) => (
+              <li key={item}>{t(`delete.removed.${item}`)}</li>
+            ))}
+          </ul>
+        </div>
+        <div className="flex flex-col gap-2">
+          <h3 className="text-xl">{t("delete.keptTitle")}</h3>
+          <p className="text-[0.9375rem] text-muted">{t("delete.kept")}</p>
+        </div>
+        <DeleteAccountForm />
+      </Section>
+    </AccountShell>
+  );
+}
+
+/** Shown once the account is gone. Someone still signed in has nothing to read here. */
+export async function AccountDeletedPage() {
+  await redirectIfSignedIn("/compte");
+  const t = await getTranslations("account");
+  return (
+    <AccountShell title={t("deleted.title")} intro={t("deleted.intro")}>
+      <div>
+        <ButtonLink href="/boutique" variant="outline">
+          {t("deleted.cta")}
+        </ButtonLink>
+      </div>
     </AccountShell>
   );
 }

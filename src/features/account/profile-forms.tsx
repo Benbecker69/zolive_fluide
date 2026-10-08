@@ -8,6 +8,8 @@ import { TextField } from "@/ui/text-field";
 
 import {
   type AddressFormState,
+  type DeleteAccountFormState,
+  deleteAccountAction,
   type NameFormState,
   renameAction,
   saveAddressAction,
@@ -119,6 +121,42 @@ export function AddressForm({ address }: { address: Address }) {
           {t("address.save")}
         </Button>
         <Saved show={state.status === "saved"}>{t("address.saved")}</Saved>
+      </div>
+    </form>
+  );
+}
+
+/** The password field is the confirmation step: nothing is deleted without it. */
+export function DeleteAccountForm() {
+  const t = useTranslations("account");
+  const [state, formAction, pending] = useActionState<DeleteAccountFormState, FormData>(
+    deleteAccountAction,
+    { status: "idle" },
+  );
+
+  const error =
+    state.status === "password-required"
+      ? t("delete.errors.passwordRequired")
+      : state.status === "wrong-password"
+        ? t("delete.errors.wrongPassword")
+        : state.status === "locked"
+          ? t("errors.locked", { minutes: state.minutes })
+          : undefined;
+
+  return (
+    <form action={formAction} noValidate className="flex flex-col gap-5">
+      <TextField
+        label={t("delete.password")}
+        name="password"
+        type="password"
+        autoComplete="current-password"
+        required
+        error={error}
+      />
+      <div>
+        <Button type="submit" variant="outline" disabled={pending}>
+          {t("delete.submit")}
+        </Button>
       </div>
     </form>
   );
