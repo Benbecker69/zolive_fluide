@@ -21,7 +21,7 @@ J'organise la documentation selon ce que le lecteur vient y chercher. Je m'inspi
 | --- | --- | --- |
 | [`audit/`](audit/README.md) | Contexte, exigences de qualité, étude technique, risques, plan de l'audit final, sources | Explication et référence |
 | [`adr/`](adr/README.md) | Une décision d'architecture par fichier | Explication |
-| [`project/`](project/plan-de-projet.md) | Plan de projet, architecture cible, backlog, comptes rendus de sprint | Référence |
+| [`project/`](project/plan-de-projet.md) | Plan de projet, architecture cible, backlog, [comptes rendus de sprint](project/sprints/sprint-0.md) | Référence |
 | [`playbooks/`](playbooks/README.md) | Mener un projet, traiter un sujet technique, listes de contrôle | Guides pratiques |
 | [`../design/`](../design/README.md) | Maquette, jetons de design, contrastes | Référence |
 
