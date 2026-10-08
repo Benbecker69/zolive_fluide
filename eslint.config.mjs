@@ -4,14 +4,15 @@ import nextTs from "eslint-config-next/typescript";
 import prettier from "eslint-config-prettier/flat";
 
 /**
- * Layer boundaries (docs/adr/0002-nextjs-modular-monolith.md).
+ * Layer boundaries (docs/adr/0002-nextjs-modular-monolith.md, amended by ADR 0012).
  * Each layer lists the only layers it may import; everything else is an error.
  */
 const LAYERS = {
-  app: ["features", "ui"],
-  features: ["data", "ui", "lib"],
+  app: ["features", "ui", "i18n"],
+  features: ["data", "ui", "lib", "i18n"],
   data: ["lib"],
-  ui: ["lib"],
+  ui: ["lib", "i18n"],
+  i18n: [],
   lib: [],
 };
 
@@ -30,6 +31,13 @@ function boundariesFor(layer) {
     patterns.push({
       group: DATABASE_PACKAGES,
       message: "Only the data layer talks to the database (see ADR 0002).",
+    });
+  }
+  if (layer !== "i18n") {
+    // Plain links would lose the language prefix: navigation goes through the i18n layer.
+    patterns.push({
+      group: ["next/link"],
+      message: "Use the locale-aware Link of @/i18n/navigation (see ADR 0005).",
     });
   }
 
@@ -70,11 +78,31 @@ const designTokens = {
   },
 };
 
+/**
+ * Translations (docs/adr/0005-next-intl-locale-prefix.md): visible text comes from the
+ * message files. The brand name and pure punctuation are the only literals allowed.
+ */
+const translatedText = {
+  files: ["src/**/*.tsx"],
+  ignores: [
+    "src/**/*.test.tsx",
+    // Developer page, written in French only and not served in other languages.
+    "src/app/*/styleguide/**",
+  ],
+  rules: {
+    "react/jsx-no-literals": [
+      "error",
+      { noStrings: true, ignoreProps: true, allowedStrings: ["zolive", "·", "—"] },
+    ],
+  },
+};
+
 export default defineConfig([
   ...nextVitals,
   ...nextTs,
   ...Object.keys(LAYERS).map(boundariesFor),
   designTokens,
+  translatedText,
   prettier,
   globalIgnores([
     ".next/**",
