@@ -55,7 +55,7 @@ Ces constats n'étaient pas prévisibles avant d'instruire les sujets. Ce sont e
 
 ### Incident
 
-À la première tentative, GitHub a refusé la poussée des fichiers de CI : mon jeton d'accès n'avait pas le droit `workflow`. J'ai étendu les droits du jeton et repris. Aucun contournement : la protection de `main`, décrite dans la documentation de GitHub [S47], n'a été activée qu'une fois les vérifications en place, puis testée par une poussée directe, refusée comme attendu.
+À la première tentative, GitHub a refusé la poussée des fichiers de CI : mon jeton d'accès n'avait pas le droit `workflow`. J'ai étendu les droits du jeton et repris. J'ai ensuite activé la protection de `main`, décrite dans la documentation de GitHub [S47], une fois les vérifications en place, et je l'ai testée par une poussée directe, refusée comme attendu.
 
 ## Rétrospective
 
