@@ -21,6 +21,7 @@ Ces listes condensent les deux guides en gestes vérifiables. Je les utilise tel
 - [ ] Elle a des critères d'acceptation testables
 - [ ] Elle est estimée, à 8 points au plus
 - [ ] Ses dépendances sont terminées
+- [ ] Chaque critère est démontrable avec ce qui existe déjà sur `main`
 - [ ] Je n'ai aucune autre issue en cours
 - [ ] Ma branche part de `main` à jour et s'appelle `<type>/<issue>-<résumé>`
 
