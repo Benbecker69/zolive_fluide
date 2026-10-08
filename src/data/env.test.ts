@@ -6,6 +6,7 @@ const valid = {
   NODE_ENV: "production",
   DATABASE_URL: "postgres://user:secret-value@db:5432/zolive",
   APP_URL: "http://localhost:3000",
+  BETTER_AUTH_SECRET: "0123456789abcdef0123456789abcdef",
 };
 
 function problemsOf(source: Record<string, string | undefined>): string[] {
@@ -28,7 +29,11 @@ describe("parseEnv", () => {
   });
 
   it("names every missing variable", () => {
-    expect(problemsOf({})).toEqual(["DATABASE_URL is missing", "APP_URL is missing"]);
+    expect(problemsOf({})).toEqual([
+      "DATABASE_URL is missing",
+      "APP_URL is missing",
+      "BETTER_AUTH_SECRET is missing",
+    ]);
   });
 
   it("treats an empty value as missing", () => {
@@ -39,6 +44,12 @@ describe("parseEnv", () => {
     expect(problemsOf({ ...valid, DATABASE_URL: "mysql://user:secret-value@db/zolive" })).toEqual([
       "DATABASE_URL must start with postgres:// or postgresql://",
     ]);
+  });
+
+  it("refuses a session secret that is too short, without echoing it", () => {
+    const source = { ...valid, BETTER_AUTH_SECRET: "too-short-secret" };
+    expect(problemsOf(source)).toEqual(["BETTER_AUTH_SECRET must be at least 32 characters long"]);
+    expect(() => parseEnv(source)).toThrowError(expect.not.stringContaining("too-short-secret"));
   });
 
   it("never echoes a value in the error message", () => {
