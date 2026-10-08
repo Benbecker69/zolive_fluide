@@ -1,9 +1,13 @@
 "use client";
 
 import { useLocale, useTranslations } from "next-intl";
-import { useState } from "react";
+import { useActionState, useEffect, useState } from "react";
 
+import { addToCartAction, type CartActionState } from "@/features/cart/actions";
+import { announceCartChange } from "@/features/cart/cart-events";
+import { Link } from "@/i18n/navigation";
 import { formatPrice, pricePerLitreCents } from "@/lib/money";
+import { Button } from "@/ui/button";
 import { QuantityStepper } from "@/ui/quantity-stepper";
 
 type Format = {
@@ -21,15 +25,18 @@ type ProductPurchaseProps = {
   maxQuantity: number;
 };
 
+const idle: CartActionState = { status: "idle" };
+
 /**
- * Choice of a format and a quantity, with the price kept in sync.
+ * Choice of a format and a quantity, with the price kept in sync, and the add-to-cart form.
  * Formats are native radio buttons in a fieldset: arrow keys, labels and form submission
- * work as usual. The server recomputes every amount when the cart is created; what is
- * displayed here is information for the visitor, never a value to trust.
+ * work as usual. The amounts shown here are information for the visitor: the server reads
+ * the price and the stock from the catalogue when the form is submitted.
  */
 export function ProductPurchase({ formats, maxQuantity }: ProductPurchaseProps) {
   const t = useTranslations("product");
   const locale = useLocale();
+  const [state, formAction, pending] = useActionState(addToCartAction, idle);
 
   const firstAvailable =
     formats.find((format) => format.isDefault && format.stock > 0) ??
@@ -38,6 +45,10 @@ export function ProductPurchase({ formats, maxQuantity }: ProductPurchaseProps) 
   const [sku, setSku] = useState(firstAvailable?.sku);
   const [quantity, setQuantity] = useState(1);
 
+  useEffect(() => {
+    if (state.status === "added") announceCartChange();
+  }, [state]);
+
   const selected = formats.find((format) => format.sku === sku) ?? firstAvailable;
   if (!selected) return null;
 
@@ -45,7 +56,7 @@ export function ProductPurchase({ formats, maxQuantity }: ProductPurchaseProps) 
   const purchasable = selected.stock > 0;
 
   return (
-    <form className="flex flex-col gap-6">
+    <form action={formAction} className="flex flex-col gap-6 self-stretch">
       <p className="flex flex-wrap items-baseline gap-x-3.5 gap-y-1" aria-live="polite">
         <span className="font-display text-4xl leading-none font-medium tracking-[-0.03em]">
           {formatPrice(selected.priceCents, locale)}
@@ -88,7 +99,7 @@ export function ProductPurchase({ formats, maxQuantity }: ProductPurchaseProps) 
       </fieldset>
 
       {purchasable ? (
-        <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
+        <div className="flex flex-wrap items-center gap-3">
           <QuantityStepper
             key={selected.sku}
             name="quantity"
@@ -100,14 +111,29 @@ export function ProductPurchase({ formats, maxQuantity }: ProductPurchaseProps) 
             }}
             onChange={setQuantity}
           />
-          <p className="text-lg" aria-live="polite">
-            {t.rich("total", {
-              amount: formatPrice(selected.priceCents * quantity, locale),
-              strong: (chunks) => <strong className="font-semibold">{chunks}</strong>,
-            })}
-          </p>
+          <Button type="submit" disabled={pending} className="min-w-0 flex-[1_1_14rem]">
+            <span>{t("addToCart")}</span>
+            <span className="-mr-3 rounded-full bg-accent px-3.5 py-1.5 text-[0.9375rem] text-ink">
+              {formatPrice(selected.priceCents * quantity, locale)}
+            </span>
+          </Button>
         </div>
       ) : null}
+
+      <p role="status" className="min-h-6 text-[0.9375rem] font-semibold">
+        {state.status === "added" ? (
+          <>
+            {t("added", { count: state.quantity })}{" "}
+            <Link href="/panier" className="underline underline-offset-4 hover:opacity-80">
+              {t("viewCart")}
+            </Link>
+          </>
+        ) : null}
+        {state.status === "insufficient-stock"
+          ? t("insufficientStock", { count: state.available })
+          : null}
+        {state.status === "invalid" || state.status === "unknown-product" ? t("addFailed") : null}
+      </p>
     </form>
   );
 }

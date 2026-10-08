@@ -59,17 +59,31 @@ export function AnnouncementBar({ children }: { children: ReactNode }) {
   );
 }
 
+type CartLinkProps = {
+  href: string;
+  /** Visible text, for example "Panier". */
+  label: string;
+  /** Number of items; without it the pill shows the label alone. */
+  count?: number;
+  /** Full accessible name when a count is shown, for example "Panier, 2 articles". */
+  countLabel?: string;
+};
+
 /** Cart entry of the header: a pill with the number of items. */
-export function CartLink({ href, label, count }: { href: string; label: string; count: number }) {
+export function CartLink({ href, label, count, countLabel }: CartLinkProps) {
+  const hasCount = count !== undefined;
   return (
     <Link
       href={href}
-      className="ml-2 flex h-11 items-center gap-2.5 rounded-full bg-ink pr-3 pl-4.5 text-sm font-semibold text-ground hover:opacity-80"
+      aria-label={hasCount ? countLabel : undefined}
+      className={`ml-2 flex h-11 items-center gap-2.5 rounded-full bg-ink pl-4.5 text-sm font-semibold text-ground hover:opacity-80 ${hasCount ? "pr-3" : "pr-4.5"}`}
     >
       <span>{label}</span>
-      <span className="flex size-6 items-center justify-center rounded-full bg-accent text-xs text-ink">
-        {count}
-      </span>
+      {hasCount ? (
+        <span className="flex h-6 min-w-6 items-center justify-center rounded-full bg-accent px-1.5 text-xs text-ink">
+          {count}
+        </span>
+      ) : null}
     </Link>
   );
 }
