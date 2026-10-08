@@ -119,12 +119,12 @@ test.describe("signing in and out", () => {
     // Replaying the cookies captured before sign-out must not open the account again.
     await context.addCookies(stolen);
     await page.goto("/fr/compte");
-    await expect(page).toHaveURL(/\/fr\/connexion$/);
+    await expect(page).toHaveURL(/\/fr\/connexion\?next=\/compte$/);
   });
 
   test("sends a visitor without a session to the sign-in page", async ({ page }) => {
     await page.goto("/fr/compte");
-    await expect(page).toHaveURL(/\/fr\/connexion$/);
+    await expect(page).toHaveURL(/\/fr\/connexion\?next=\/compte$/);
     await expect(page.getByRole("heading", { level: 1, name: "Connexion" })).toBeVisible();
   });
 
@@ -140,7 +140,7 @@ test.describe("signing in and out", () => {
   test("is reachable from the header", async ({ page }) => {
     await page.goto("/fr");
     await page.getByRole("banner").getByRole("link", { name: "Compte" }).click();
-    await expect(page).toHaveURL(/\/fr\/connexion$/);
+    await expect(page).toHaveURL(/\/fr\/connexion\?next=\/compte$/);
   });
 });
 
