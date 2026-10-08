@@ -11,3 +11,8 @@ auditConfig:
     # reached at lint time through the Next.js lint plugin, never at runtime, and it only
     # receives glob patterns written in this repository. Tracked in risk R-16.
     - GHSA-vfj7-8cjw-p6xm
+
+minimumReleaseAgeExclude:
+  - "@playwright/test@1.64.0"
+  - playwright-core@1.64.0
+  - playwright@1.64.0

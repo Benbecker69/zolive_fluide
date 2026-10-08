@@ -10,3 +10,5 @@ design/mockup
 
 # Markdown is checked by markdownlint
 *.md
+playwright-report
+test-results

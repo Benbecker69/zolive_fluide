@@ -1,0 +1,75 @@
+@import "tailwindcss";
+
+/*
+ * Design tokens of the style guide (design/README.md, docs/adr/0006-tailwind-design-tokens.md).
+ * The default palette is removed: only these colours have utility classes.
+ */
+@theme {
+  --color-*: initial;
+  --color-ground: #f7f9f4;
+  --color-surface: #ffffff;
+  --color-ink: #11231a;
+  --color-brand: #1d4a35;
+  --color-accent: #ddeb52;
+  --color-muted: #4f6156;
+  --color-on-brand-muted: #c9d6c6;
+  /* Decorative separators only: 1.23:1 on ground. */
+  --color-line: #dce4d5;
+  /* Borders of interactive controls: 3.61:1 on ground, 3.82:1 on surface, 3.15:1 on tint-sage. */
+  --color-control-line: #74877b;
+  --color-tint-sage: #e3ecdb;
+  --color-tint-zest: #f2f5c6;
+  --color-tint-sky: #dcebf1;
+  --color-tint-peach: #f5e6dc;
+
+  --font-display: var(--font-bricolage), "Helvetica Neue", Helvetica, sans-serif;
+  --font-serif: var(--font-instrument), Georgia, serif;
+  --font-sans: var(--font-hanken), "Helvetica Neue", Helvetica, sans-serif;
+
+  --radius-block: 2.5rem;
+  --radius-card: 1.75rem;
+  --radius-thumb: 1.25rem;
+
+  --container-page: 86rem;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-ground);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    line-height: 1.55;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    letter-spacing: -0.035em;
+    text-wrap: balance;
+  }
+
+  /* One or two accent words per heading, in the serif italic. */
+  :is(h1, h2, h3) em {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: -0.015em;
+    font-size: 1.06em;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /*
+   * Two-tone focus indicator: the dark ring is visible on light surfaces and the
+   * light halo on dark ones, so the focus never disappears.
+   */
+  :focus-visible {
+    outline: 2px solid var(--color-ink);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 5px var(--color-accent);
+  }
+}

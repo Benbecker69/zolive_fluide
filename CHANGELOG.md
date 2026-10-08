@@ -19,3 +19,5 @@ The format is based on [Keep a Changelog 1.1.0](https://keepachangelog.com/en/1.
 - Application skeleton: Next.js 16, strict TypeScript, ESLint with enforced layer boundaries, Prettier, Vitest.
 - Application pipeline: formatting, lint, type check, dead code detection, tests, build, dependency audit and static security analysis on every pull request.
 - Local runtime with Docker Compose: production image run by an unprivileged user, PostgreSQL 18, configuration validated at start-up, health endpoint.
+- Design system: theme tokens, self-hosted fonts and the base components of the style guide, shown on a living style guide page.
+- End-to-end and accessibility tests run against the production build on every pull request.

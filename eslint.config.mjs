@@ -47,10 +47,41 @@ function boundariesFor(layer) {
   return { files: [`src/${layer}/**/*.{ts,tsx}`], rules };
 }
 
+/**
+ * Design tokens (docs/adr/0006-tailwind-design-tokens.md): colours come from the theme.
+ * A literal colour in the code is an error; the theme itself lives in globals.css.
+ */
+const COLOUR_LITERAL = String.raw`/#[0-9a-fA-F]{3,8}\b|\b(rgb|rgba|hsl|hsla|oklch|oklab)\(/`;
+const designTokens = {
+  files: ["src/**/*.{ts,tsx}"],
+  ignores: ["src/**/*.test.{ts,tsx}"],
+  rules: {
+    "no-restricted-syntax": [
+      "error",
+      {
+        selector: `Literal[value=${COLOUR_LITERAL}]`,
+        message: "Use a colour token of the theme instead of a literal colour (see ADR 0006).",
+      },
+      {
+        selector: `TemplateElement[value.raw=${COLOUR_LITERAL}]`,
+        message: "Use a colour token of the theme instead of a literal colour (see ADR 0006).",
+      },
+    ],
+  },
+};
+
 export default defineConfig([
   ...nextVitals,
   ...nextTs,
   ...Object.keys(LAYERS).map(boundariesFor),
+  designTokens,
   prettier,
-  globalIgnores([".next/**", "coverage/**", "design/mockup/**", "next-env.d.ts"]),
+  globalIgnores([
+    ".next/**",
+    "coverage/**",
+    "design/mockup/**",
+    "next-env.d.ts",
+    "playwright-report/**",
+    "test-results/**",
+  ]),
 ]);
