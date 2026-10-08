@@ -3,8 +3,11 @@ import "server-only";
 import { drizzle, type NodePgDatabase } from "drizzle-orm/node-postgres";
 import { Pool } from "pg";
 
+import * as authSchema from "./auth-schema";
 import { getEnv } from "./env";
-import * as schema from "./schema";
+import * as catalogueSchema from "./schema";
+
+const schema = { ...catalogueSchema, ...authSchema };
 
 /**
  * One connection pool per process. In development, hot reloading re-evaluates
