@@ -18,10 +18,10 @@ export async function generateMetadata({
   return { title: t("signIn.metaTitle"), robots: { index: false } };
 }
 
-export default async function Page({ params }: PageProps<"/[locale]/connexion">) {
+export default async function Page({ params, searchParams }: PageProps<"/[locale]/connexion">) {
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) notFound();
   setRequestLocale(locale);
 
-  return <SignInPage />;
+  return <SignInPage searchParams={await searchParams} />;
 }

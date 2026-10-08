@@ -189,7 +189,33 @@
       "emailTaken": "An account already exists with this email address. Sign in, or use another address.",
       "invalidCredentials": "Incorrect email address or password.",
       "rejected": "The account could not be created. Check the fields and try again.",
-      "locked": "{minutes, plural, one {Too many attempts. Try again in # minute.} other {Too many attempts. Try again in # minutes.}}"
+      "locked": "{minutes, plural, one {Too many attempts. Try again in # minute.} other {Too many attempts. Try again in # minutes.}}",
+      "address": {
+        "recipient": "Enter the name of the recipient.",
+        "line1": "Enter the street and number.",
+        "line2": "The second address line is too long.",
+        "postalCode": "Enter a five-digit postal code, for example 13100.",
+        "city": "Enter the city."
+      }
+    },
+    "profile": {
+      "title": "My details",
+      "saveName": "Save name",
+      "saved": "Name saved."
+    },
+    "address": {
+      "title": "Delivery address",
+      "intro": "It will be suggested for each order. We deliver to mainland France.",
+      "recipient": "Recipient",
+      "line1": "Street and number",
+      "line2": "Address line 2 (optional)",
+      "postalCode": "Postal code",
+      "city": "City",
+      "save": "Save address",
+      "saved": "Address saved."
+    },
+    "session": {
+      "title": "Session"
     }
   }
 }

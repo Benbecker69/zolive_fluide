@@ -83,7 +83,7 @@ export function SignUpForm() {
   );
 }
 
-export function SignInForm() {
+export function SignInForm({ next }: { next: string }) {
   const t = useTranslations("account");
   const [state, formAction, pending] = useActionState(signInAction, idle);
 
@@ -99,6 +99,7 @@ export function SignInForm() {
         <FormAlert>{t("errors.locked", { minutes: state.minutes })}</FormAlert>
       ) : null}
 
+      <input type="hidden" name="next" value={next} />
       <TextField
         label={t("email")}
         name="email"
