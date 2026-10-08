@@ -10,7 +10,6 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
     "lint": "eslint .",
     "typecheck": "next typegen && tsc --noEmit",
     "format": "prettier --write .",
@@ -18,15 +17,24 @@
     "test": "vitest run",
     "check": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm knip && pnpm test && pnpm build",
     "knip": "knip",
-    "audit": "pnpm audit --audit-level=high"
+    "audit": "pnpm audit --audit-level=high",
+    "db:up": "docker compose -f compose.yaml -f compose.dev.yaml up --detach --wait db",
+    "db:down": "docker compose -f compose.yaml -f compose.dev.yaml down",
+    "demo:up": "docker compose --profile demo up --build --detach --wait",
+    "demo:down": "docker compose --profile demo down",
+    "demo:smoke": "sh scripts/smoke-container.sh"
   },
   "dependencies": {
     "next": "16.4.0",
+    "pg": "8.23.1",
     "react": "19.3.0",
-    "react-dom": "19.3.0"
+    "react-dom": "19.3.0",
+    "server-only": "0.0.1",
+    "zod": "4.6.5"
   },
   "devDependencies": {
     "@types/node": "24.19.1",
+    "@types/pg": "8.23.1",
     "@types/react": "19.3.0",
     "@types/react-dom": "19.3.0",
     "eslint": "9.39.5",
