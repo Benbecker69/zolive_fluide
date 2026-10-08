@@ -1,0 +1,22 @@
+{
+  "meta": {
+    "title": "Zolive — Huiles d'olive et épicerie fine",
+    "description": "Des huiles pressées à froid, des olives cueillies à maturité et quelques bonnes choses à poser sur la table."
+  },
+  "chrome": {
+    "skipToContent": "Aller au contenu",
+    "announcement": "Nouvelle récolte disponible — pressée à froid, mise en bouteille au moulin",
+    "homeLabel": "Zolive, retour à l'accueil",
+    "languageNav": "Langue",
+    "notice": "© 2026 Zolive"
+  },
+  "home": {
+    "title": "Zolive",
+    "comingSoon": "Boutique en construction."
+  },
+  "notFound": {
+    "title": "Page introuvable",
+    "description": "La page demandée n'existe pas ou a été déplacée.",
+    "backHome": "Retour à l'accueil"
+  }
+}

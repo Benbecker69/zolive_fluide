@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import createNextIntlPlugin from "next-intl/plugin";
 
 const nextConfig: NextConfig = {
   // Do not advertise the framework in response headers.
@@ -8,4 +9,7 @@ const nextConfig: NextConfig = {
   output: "standalone",
 };
 
-export default nextConfig;
+// Wires the request configuration of src/i18n/request.ts into the build.
+const withNextIntl = createNextIntlPlugin();
+
+export default withNextIntl(nextConfig);

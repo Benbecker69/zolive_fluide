@@ -1,0 +1,22 @@
+{
+  "meta": {
+    "title": "Zolive — Olive oils and fine foods",
+    "description": "Cold-pressed oils, olives picked when ripe and a few good things to put on the table."
+  },
+  "chrome": {
+    "skipToContent": "Skip to content",
+    "announcement": "New harvest available — cold-pressed, bottled at the mill",
+    "homeLabel": "Zolive, back to home",
+    "languageNav": "Language",
+    "notice": "© 2026 Zolive"
+  },
+  "home": {
+    "title": "Zolive",
+    "comingSoon": "Shop under construction."
+  },
+  "notFound": {
+    "title": "Page not found",
+    "description": "The page you asked for does not exist or has moved.",
+    "backHome": "Back to home"
+  }
+}
