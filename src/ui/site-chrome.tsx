@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import type { ReactNode } from "react";
 
 type NavItem = { href: string; label: string; current?: boolean };
@@ -38,6 +38,18 @@ function Logo({ href, label, small = false }: { href: string; label: string; sma
   );
 }
 
+/** First focusable element of the page: lets keyboard users jump over the header. */
+export function SkipLink({ href, children }: { href: string; children: ReactNode }) {
+  return (
+    <a
+      href={href}
+      className="sr-only focus:not-sr-only focus:absolute focus:top-3 focus:left-3 focus:z-10 focus:rounded-full focus:bg-ink focus:px-5 focus:py-3 focus:font-semibold focus:text-ground"
+    >
+      {children}
+    </a>
+  );
+}
+
 /** Full-width strip above the header for the message of the moment. */
 export function AnnouncementBar({ children }: { children: ReactNode }) {
   return (
@@ -64,7 +76,7 @@ export function CartLink({ href, label, count }: { href: string; label: string; 
 
 type SiteHeaderProps = {
   logo: { href: string; label: string };
-  nav: { label: string; items: NavItem[] };
+  nav?: { label: string; items: NavItem[] };
   /** Controls on the right: search, account, cart, language switch. */
   actions?: ReactNode;
 };
@@ -73,21 +85,23 @@ export function SiteHeader({ logo, nav, actions }: SiteHeaderProps) {
   return (
     <header className="mx-auto flex max-w-page flex-wrap items-center justify-between gap-x-8 gap-y-2 px-5 py-5 sm:px-8 lg:px-12">
       <Logo {...logo} />
-      <nav aria-label={nav.label}>
-        <ul className="flex flex-wrap items-center gap-x-9 text-[0.9375rem] font-medium">
-          {nav.items.map((item) => (
-            <li key={item.label}>
-              <Link
-                href={item.href}
-                aria-current={item.current ? "page" : undefined}
-                className={`flex min-h-11 items-center hover:opacity-80 ${item.current ? "border-b-2 border-ink font-semibold" : ""}`}
-              >
-                {item.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </nav>
+      {nav ? (
+        <nav aria-label={nav.label}>
+          <ul className="flex flex-wrap items-center gap-x-9 text-[0.9375rem] font-medium">
+            {nav.items.map((item) => (
+              <li key={item.label}>
+                <Link
+                  href={item.href}
+                  aria-current={item.current ? "page" : undefined}
+                  className={`flex min-h-11 items-center hover:opacity-80 ${item.current ? "border-b-2 border-ink font-semibold" : ""}`}
+                >
+                  {item.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      ) : null}
       {actions ? <div className="flex items-center gap-1">{actions}</div> : null}
     </header>
   );
@@ -95,7 +109,7 @@ export function SiteHeader({ logo, nav, actions }: SiteHeaderProps) {
 
 type SiteFooterProps = {
   logo: { href: string; label: string };
-  nav: { label: string; items: NavItem[] };
+  nav?: { label: string; items: NavItem[] };
   /** Legal line, for example "© 2026 Zolive". */
   notice: string;
 };
@@ -105,17 +119,19 @@ export function SiteFooter({ logo, nav, notice }: SiteFooterProps) {
     <footer className="mx-auto max-w-page px-5 pt-26 pb-10 sm:px-8 lg:px-12">
       <div className="flex flex-wrap items-center justify-between gap-x-8 gap-y-3 border-t border-line pt-7">
         <Logo {...logo} small />
-        <nav aria-label={nav.label}>
-          <ul className="flex flex-wrap gap-x-7 text-sm">
-            {nav.items.map((item) => (
-              <li key={item.label}>
-                <Link href={item.href} className="flex min-h-11 items-center hover:opacity-80">
-                  {item.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
+        {nav ? (
+          <nav aria-label={nav.label}>
+            <ul className="flex flex-wrap gap-x-7 text-sm">
+              {nav.items.map((item) => (
+                <li key={item.label}>
+                  <Link href={item.href} className="flex min-h-11 items-center hover:opacity-80">
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        ) : null}
         <p className="text-[0.8125rem] text-muted">{notice}</p>
       </div>
     </footer>

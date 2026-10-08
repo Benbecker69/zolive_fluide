@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import { setRequestLocale } from "next-intl/server";
 import type { ReactNode } from "react";
 
 import { Button, ButtonLink, TextLink } from "@/ui/button";
 import { FilterChip, Tag } from "@/ui/chip";
 import { ProductCard } from "@/ui/product-card";
 import { QuantityStepper } from "@/ui/quantity-stepper";
-import { AnnouncementBar, CartLink, SiteFooter, SiteHeader } from "@/ui/site-chrome";
+import { CartLink } from "@/ui/site-chrome";
 import { TextField } from "@/ui/text-field";
 
 export const metadata: Metadata = {
@@ -37,26 +39,15 @@ function Section({ title, children }: { title: string; children: ReactNode }) {
  * Living version of the style guide: every component of `ui/` on one page.
  * It is the page the accessibility checks run against.
  */
-export default function StyleguidePage() {
+export default async function StyleguidePage({ params }: PageProps<"/[locale]/styleguide">) {
+  // Developer page, written in French only: it does not exist in other languages.
+  const { locale } = await params;
+  if (locale !== "fr") notFound();
+  setRequestLocale(locale);
+
   return (
     <>
-      <AnnouncementBar>
-        Nouvelle récolte disponible — pressée à froid, mise en bouteille au moulin
-      </AnnouncementBar>
-      <SiteHeader
-        logo={{ href: "/", label: "Zolive, retour à l'accueil" }}
-        nav={{
-          label: "Navigation principale",
-          items: [
-            { href: "/styleguide", label: "Boutique", current: true },
-            { href: "/styleguide", label: "Coffrets" },
-            { href: "/styleguide", label: "Le moulin" },
-          ],
-        }}
-        actions={<CartLink href="/styleguide" label="Panier" count={2} />}
-      />
-
-      <main className="mx-auto flex max-w-page flex-col gap-16 px-5 py-12 sm:px-8 lg:px-12">
+      <div className="mx-auto flex max-w-page flex-col gap-16 px-5 py-12 sm:px-8 lg:px-12">
         <div className="flex flex-col gap-4">
           <h1 className="text-[clamp(2.75rem,6vw,5.5rem)] leading-none tracking-[-0.045em]">
             Charte <em>graphique</em>
@@ -104,6 +95,12 @@ export default function StyleguidePage() {
               Indisponible
             </Button>
             <TextLink href="/styleguide">Notre savoir-faire</TextLink>
+          </div>
+        </Section>
+
+        <Section title="Navigation">
+          <div className="flex">
+            <CartLink href="/styleguide" label="Panier" count={2} />
           </div>
         </Section>
 
@@ -194,19 +191,7 @@ export default function StyleguidePage() {
             />
           </div>
         </Section>
-      </main>
-
-      <SiteFooter
-        logo={{ href: "/", label: "Zolive, retour à l'accueil" }}
-        nav={{
-          label: "Pied de page",
-          items: [
-            { href: "/styleguide", label: "Livraison et retours" },
-            { href: "/styleguide", label: "Mentions légales" },
-          ],
-        }}
-        notice="© 2026 Zolive"
-      />
+      </div>
     </>
   );
 }
