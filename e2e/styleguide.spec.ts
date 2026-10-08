@@ -3,7 +3,7 @@ import { expect, test } from "@playwright/test";
 
 test.describe("style guide", () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto("/styleguide");
+    await page.goto("/fr/styleguide");
   });
 
   test("has no serious or critical accessibility violation", async ({ page }) => {

@@ -73,7 +73,7 @@ pnpm db:up
 pnpm dev
 ```
 
-Pour l'instant, le site affiche une page d'attente et la charte graphique vivante sur `/styleguide` : les pages du catalogue arrivent au fil du sprint 1. La maquette se consulte en ouvrant les fichiers de [`design/mockup/`](design/mockup/) dans un navigateur.
+Pour l'instant, le site affiche une page d'attente en français (`/fr`) et en anglais (`/en`), et la charte graphique vivante sur `/fr/styleguide` : les pages du catalogue arrivent au fil du sprint 1. La maquette se consulte en ouvrant les fichiers de [`design/mockup/`](design/mockup/) dans un navigateur.
 
 ### Configuration
 
@@ -99,4 +99,6 @@ Toute la configuration passe par des variables d'environnement, décrites dans [
 
 ### Organisation du code
 
-Le code vit dans `src/`, découpé en cinq couches dont les dépendances ne vont que dans un sens : `app` → `features` → `data`, avec `ui` et `lib` en appui. La règle est décrite dans l'[ADR 0002](docs/adr/0002-nextjs-modular-monolith.md) et vérifiée par le linter : une importation qui la viole fait échouer `pnpm lint`.
+Le code vit dans `src/`, découpé en couches dont les dépendances ne vont que dans un sens : `app` → `features` → `data`, avec `ui`, `i18n` et `lib` en appui. La règle est décrite dans l'[ADR 0002](docs/adr/0002-nextjs-modular-monolith.md), complétée par l'[ADR 0012](docs/adr/0012-i18n-cross-cutting-layer.md), et vérifiée par le linter : une importation qui la viole fait échouer `pnpm lint`.
+
+Les textes de l'interface vivent dans `messages/fr.json` et `messages/en.json`. Le français est la référence : une clé absente en anglais, un texte en dur dans un composant ou une clé inconnue font échouer la CI.

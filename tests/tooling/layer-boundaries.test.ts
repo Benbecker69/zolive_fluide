@@ -25,6 +25,7 @@ describe("layer boundaries", () => {
     ["src/data/orders.ts", "@/features/cart/total"],
     ["src/features/cart/total.ts", "@/app/page"],
     ["src/app/page.tsx", "@/data/orders"],
+    ["src/i18n/routing.ts", "@/lib/money"],
     ["src/app/page.tsx", "../data/orders"],
   ])("rejects %s importing %s", async (filePath, source) => {
     expect(await violations(filePath, importFrom(source))).toContain("no-restricted-imports");
@@ -37,6 +38,8 @@ describe("layer boundaries", () => {
     ["src/features/cart/total.ts", "@/lib/money"],
     ["src/data/orders.ts", "@/lib/money"],
     ["src/ui/button.ts", "@/lib/money"],
+    ["src/ui/button.ts", "@/i18n/navigation"],
+    ["src/features/cart/total.ts", "@/i18n/navigation"],
   ])("accepts %s importing %s", async (filePath, source) => {
     expect(await violations(filePath, importFrom(source))).toEqual([]);
   });

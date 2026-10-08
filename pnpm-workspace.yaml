@@ -1,5 +1,9 @@
 # Dependencies allowed to run install scripts. Everything else is blocked by pnpm.
 allowBuilds:
+  # Pulled in by the next-intl build plugin. Both ship prebuilt binaries as optional
+  # dependencies: their install scripts are not needed.
+  "@parcel/watcher": false
+  "@swc/core": false
   # Native resolver used by the ESLint import plugin (pulled in by eslint-config-next).
   unrs-resolver: true
 
