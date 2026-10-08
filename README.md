@@ -2,7 +2,7 @@
 
 Boutique en ligne d'huiles d'olive et d'épicerie fine. Projet réalisé dans le cadre de mon mastère Lead Développeur (EEMI) ; la marque et le catalogue sont fictifs.
 
-Ce dépôt contient le site et la démarche qui l'encadre : audit de cadrage, décisions d'architecture justifiées, plan de projet agile.
+Ce dépôt contient le site et la démarche qui l'encadre : audit de cadrage, décisions d'architecture justifiées, plan de projet agile et guides de méthode.
 
 ![Page d'accueil de la maquette](design/screenshots/accueil.png)
 
@@ -39,6 +39,7 @@ Chaque choix est comparé à ses alternatives dans l'[étude technique](docs/aud
 | [Plan de projet](docs/project/plan-de-projet.md) | Organisation agile, feuille de route, *Definition of Ready* et *Done* |
 | [Architecture cible](docs/project/architecture.md) | Diagrammes C4, couches, modèle de données, parcours de commande |
 | [Backlog](docs/project/backlog.md) | Les issues par sprint, avec priorité et estimation |
+| [Guides de méthode](docs/playbooks/README.md) | Ma façon de mener un projet et d'instruire un sujet technique, avec les listes de contrôle |
 | [Maquette](design/README.md) | Pages de la maquette, jetons de design, contrastes |
 | [Contribuer](CONTRIBUTING.md) | Flux de travail, convention de commits, relecture |
 
