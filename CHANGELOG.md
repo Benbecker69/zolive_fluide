@@ -29,3 +29,4 @@ The format is based on [Keep a Changelog 1.1.0](https://keepachangelog.com/en/1.
 - Home page: hero, category tiles and favourite products read from the database, the mill story and the taste guide.
 - Sprint 1 review and retrospective.
 - Cart: add from a product page, change quantities, remove lines; stored on the server and tied to an opaque, protected cookie; header link with its count.
+- Customer accounts: sign up, sign in and sign out with e-mail and password, Argon2id hashing, sessions stored in the database and revoked on sign-out.

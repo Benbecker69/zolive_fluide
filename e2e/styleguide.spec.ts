@@ -53,7 +53,10 @@ test.describe("style guide", () => {
   test("loads nothing from a third-party domain", async ({ page }) => {
     const origins = new Set<string>();
     page.on("request", (request) => origins.add(new URL(request.url()).origin));
-    await page.reload({ waitUntil: "networkidle" });
+    // Wait for the page and its fonts, not for the network to go quiet: the latter is
+    // not a reliable signal and made this test time out on a slower machine.
+    await page.reload({ waitUntil: "load" });
+    await page.evaluate(() => document.fonts.ready);
 
     expect([...origins]).toEqual([new URL(page.url()).origin]);
   });

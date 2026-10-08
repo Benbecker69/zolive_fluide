@@ -4,6 +4,7 @@ import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import { CartHeaderLink } from "@/features/cart/cart-header-link";
+import { Link } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
 import { fontVariables } from "@/ui/fonts";
 import { LanguageSwitcher } from "@/ui/language-switcher";
@@ -31,6 +32,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps<"/[
   setRequestLocale(locale);
 
   const t = await getTranslations("chrome");
+  const account = await getTranslations("account");
   const logo = { href: "/", label: t("homeLabel") };
 
   return (
@@ -52,6 +54,12 @@ export default async function LocaleLayout({ children, params }: LayoutProps<"/[
             actions={
               <>
                 <LanguageSwitcher label={t("languageNav")} current={locale} languages={LANGUAGES} />
+                <Link
+                  href="/compte"
+                  className="flex h-11 items-center rounded-full px-4 text-sm font-semibold hover:bg-tint-sage"
+                >
+                  {account("link")}
+                </Link>
                 <CartHeaderLink />
               </>
             }

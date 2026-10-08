@@ -7,6 +7,8 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   // Self-contained server for the Docker image (see Dockerfile).
   output: "standalone",
+  // Native module: loaded by Node.js at run time instead of being bundled.
+  serverExternalPackages: ["@node-rs/argon2"],
 };
 
 // Wires the request configuration of src/i18n/request.ts into the build.

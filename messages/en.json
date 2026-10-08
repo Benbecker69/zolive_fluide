@@ -155,5 +155,40 @@
     "shippingLater": "calculated at the next step",
     "pricesNote": "Prices and availability are checked again when you place the order.",
     "continueShopping": "Continue shopping"
+  },
+  "account": {
+    "link": "Account",
+    "name": "Name",
+    "email": "Email address",
+    "password": "Password",
+    "passwordHint": "At least {min} characters. A sentence that is easy to remember works very well.",
+    "signOut": "Sign out",
+    "signIn": {
+      "metaTitle": "Sign in — Zolive",
+      "title": "Sign in",
+      "intro": "Get back to your account and your orders.",
+      "submit": "Sign in",
+      "noAccount": "No account yet? <link>Create an account</link>"
+    },
+    "signUp": {
+      "metaTitle": "Create an account — Zolive",
+      "title": "Create an account",
+      "intro": "An account is all you need to order and follow your orders.",
+      "submit": "Create my account",
+      "haveAccount": "Already have an account? <link>Sign in</link>"
+    },
+    "home": {
+      "metaTitle": "My account — Zolive",
+      "title": "My account",
+      "greeting": "Hello {name}."
+    },
+    "errors": {
+      "name": "Enter your name.",
+      "email": "Enter a valid email address, for example name@example.org.",
+      "password": "The password must be at least {min} characters long.",
+      "emailTaken": "An account already exists with this email address. Sign in, or use another address.",
+      "invalidCredentials": "Incorrect email address or password.",
+      "rejected": "The account could not be created. Check the fields and try again."
+    }
   }
 }

@@ -23,6 +23,7 @@ export default defineConfig({
     env: {
       DATABASE_URL: TEST_DATABASE_URL,
       APP_URL: "http://localhost:3000",
+      BETTER_AUTH_SECRET: "integration-tests-only-0123456789abcdef",
     },
   },
 });

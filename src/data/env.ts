@@ -14,6 +14,8 @@ const envSchema = z.object({
       error: "must start with postgres:// or postgresql://",
     }),
   APP_URL: z.url({ error: "must be the public base URL of the site" }),
+  // Signs the session cookies. Never committed: each environment has its own.
+  BETTER_AUTH_SECRET: z.string().min(32, { error: "must be at least 32 characters long" }),
 });
 
 export type Env = z.infer<typeof envSchema>;
