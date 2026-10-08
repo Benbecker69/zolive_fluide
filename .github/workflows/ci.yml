@@ -17,6 +17,21 @@ jobs:
     name: app
     runs-on: ubuntu-24.04
     timeout-minutes: 15
+    services:
+      # Real PostgreSQL for the integration tests, same version as the application.
+      postgres:
+        image: postgres:18.6-alpine
+        env:
+          POSTGRES_USER: zolive
+          POSTGRES_PASSWORD: ci-only
+          POSTGRES_DB: zolive_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U zolive -d zolive_test"
+          --health-interval 5s
+          --health-timeout 3s
+          --health-retries 10
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -40,6 +55,10 @@ jobs:
         run: pnpm knip
       - name: Test
         run: pnpm test
+      - name: Integration tests
+        run: pnpm test:integration
+        env:
+          TEST_DATABASE_URL: postgres://zolive:ci-only@localhost:5432/zolive_test
       - name: Build
         run: pnpm build
 

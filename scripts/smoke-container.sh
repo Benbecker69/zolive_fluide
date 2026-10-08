@@ -27,13 +27,18 @@ echo "   published=${published:-none}"
 # Compose prints ":0" for a port that is not published.
 [ -z "$published" ] || [ "$published" = ":0" ]
 
-echo "5. The health endpoint answers 503 when the database is down"
+echo "5. The demonstration catalogue is loaded by the setup task"
+products=$($compose exec -T db sh -c 'psql -U "$POSTGRES_USER" -d "$POSTGRES_DB" -tAc "select count(*) from products"')
+echo "   products=$products"
+[ "$products" = "9" ]
+
+echo "6. The health endpoint answers 503 when the database is down"
 $compose stop db >/dev/null
 status=$(curl --silent --output /dev/null --write-out '%{http_code}' "$url")
 echo "   status=$status"
 [ "$status" = "503" ]
 
-echo "6. The application refuses to start without its configuration and names the variable"
+echo "7. The application refuses to start without its configuration and names the variable"
 image=$($compose images --quiet app | head -n 1)
 output=$(docker run --rm -e APP_URL=http://localhost:3000 "$image" 2>&1) && {
   echo "   expected a non-zero exit"; exit 1; }
