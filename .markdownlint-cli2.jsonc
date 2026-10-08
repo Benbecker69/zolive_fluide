@@ -7,8 +7,8 @@
     // The changelog repeats "Added", "Changed"... under each version.
     "MD024": { "siblings_only": true },
     // Table cells are not padded to a fixed width.
-    "MD060": false
+    "MD060": false,
   },
   "globs": ["**/*.md"],
-  "ignores": ["node_modules", ".github/pull_request_template.md", "design/mockup"]
+  "ignores": ["node_modules", ".next", ".github/pull_request_template.md", "design/mockup"],
 }
