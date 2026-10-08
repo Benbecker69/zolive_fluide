@@ -173,7 +173,7 @@ Ce diagramme est le contrat que les tests d'intégration de la commande vérifie
 | Panier | Dynamique | Dépend du visiteur |
 | Compte, tunnel de commande, historique | Dynamique, authentifié | Données personnelles ; CSP stricte à *nonces* (SEC-09) |
 
-Le compteur du panier dans l'en-tête est la seule partie dynamique des pages publiques ; il sera chargé à part pour ne pas rendre toute la page dynamique. La technique exacte sera choisie et mesurée en sprint 2.
+Le compteur du panier dans l'en-tête est la seule partie dynamique des pages publiques. Je le charge à part pour ne pas rendre toute la page dynamique : un petit composant client l'obtient par une requête propre au visiteur, une fois la page affichée, puis à chaque modification du panier. Sans JavaScript, le lien vers le panier reste présent, sans son compteur.
 
 ## Sources
 

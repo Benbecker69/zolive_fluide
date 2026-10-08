@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
+import { CartHeaderLink } from "@/features/cart/cart-header-link";
 import { routing } from "@/i18n/routing";
 import { fontVariables } from "@/ui/fonts";
 import { LanguageSwitcher } from "@/ui/language-switcher";
@@ -49,7 +50,10 @@ export default async function LocaleLayout({ children, params }: LayoutProps<"/[
               ],
             }}
             actions={
-              <LanguageSwitcher label={t("languageNav")} current={locale} languages={LANGUAGES} />
+              <>
+                <LanguageSwitcher label={t("languageNav")} current={locale} languages={LANGUAGES} />
+                <CartHeaderLink />
+              </>
             }
           />
           <main id="content">{children}</main>

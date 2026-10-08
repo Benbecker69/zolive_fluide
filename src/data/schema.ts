@@ -6,8 +6,10 @@ import {
   integer,
   pgEnum,
   pgTable,
+  primaryKey,
   smallint,
   text,
+  timestamp,
   uuid,
 } from "drizzle-orm/pg-core";
 
@@ -102,6 +104,34 @@ export const variants = pgTable(
     check("variants_price_positive", sql`${table.priceCents} > 0`),
     check("variants_stock_not_negative", sql`${table.stock} >= 0`),
     check("variants_volume_positive", sql`${table.volumeMl} is null or ${table.volumeMl} > 0`),
+  ],
+);
+
+/**
+ * Shopping cart. Its identifier is random and is the only thing stored in the visitor's
+ * cookie: whoever holds it owns the cart. A cart never stores a price: amounts are always
+ * read from the catalogue.
+ */
+export const carts = pgTable("carts", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+});
+
+export const cartItems = pgTable(
+  "cart_items",
+  {
+    cartId: uuid("cart_id")
+      .notNull()
+      .references(() => carts.id, { onDelete: "cascade" }),
+    variantId: uuid("variant_id")
+      .notNull()
+      .references(() => variants.id, { onDelete: "cascade" }),
+    quantity: integer("quantity").notNull(),
+  },
+  (table) => [
+    primaryKey({ columns: [table.cartId, table.variantId] }),
+    check("cart_items_quantity_range", sql`${table.quantity} between 1 and 12`),
   ],
 );
 
