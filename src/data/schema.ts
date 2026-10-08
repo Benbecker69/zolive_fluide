@@ -13,6 +13,8 @@ import {
   uuid,
 } from "drizzle-orm/pg-core";
 
+import { user } from "./auth-schema";
+
 /**
  * Catalogue schema (docs/project/architecture.md, docs/adr/0003-postgresql-drizzle.md).
  *
@@ -149,6 +151,22 @@ export const signInThrottles = pgTable(
   },
   (table) => [check("sign_in_throttles_failures_not_negative", sql`${table.failures} >= 0`)],
 );
+
+/**
+ * Delivery address of a customer: one per account. Only what a delivery needs is stored
+ * (requirement LEG-06). It disappears with the account.
+ */
+export const addresses = pgTable("addresses", {
+  userId: text("user_id")
+    .primaryKey()
+    .references(() => user.id, { onDelete: "cascade" }),
+  recipient: text("recipient").notNull(),
+  line1: text("line1").notNull(),
+  line2: text("line2"),
+  postalCode: text("postal_code").notNull(),
+  city: text("city").notNull(),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+});
 
 export const categoriesRelations = relations(categories, ({ many }) => ({
   products: many(products),

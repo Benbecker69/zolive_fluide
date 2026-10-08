@@ -7,6 +7,7 @@ import { signIn, signOut, signUp } from "@/data/auth";
 import { redirect } from "@/i18n/navigation";
 
 import { type AccountField, invalidFields, signInSchema, signUpSchema } from "./credentials";
+import { safeNextPath } from "./profile-schemas";
 
 /**
  * Account actions. They are public entry points: inputs are validated here, the answer
@@ -63,7 +64,8 @@ export async function signInAction(
       : { status: "invalid-credentials", values };
   }
 
-  return redirect({ href: "/compte", locale: await getLocale() });
+  // Back to the page the visitor wanted, if it is a page of this site.
+  return redirect({ href: safeNextPath(formData.get("next")), locale: await getLocale() });
 }
 
 export async function signOutAction(): Promise<void> {

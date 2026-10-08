@@ -70,6 +70,11 @@ export async function getUserFromHeaders(headers: Headers): Promise<CurrentUser 
   return { id, name, email };
 }
 
+/** Changes the display name of the signed-in user of a request. */
+export async function renameUser(headers: Headers, name: string): Promise<void> {
+  await getAuth().api.updateUser({ body: { name }, headers });
+}
+
 export async function signUp(
   input: { name: string; email: string; password: string },
   headers: Headers,

@@ -31,3 +31,4 @@ The format is based on [Keep a Changelog 1.1.0](https://keepachangelog.com/en/1.
 - Cart: add from a product page, change quantities, remove lines; stored on the server and tied to an opaque, protected cookie; header link with its count.
 - Customer accounts: sign up, sign in and sign out with e-mail and password, Argon2id hashing, sessions stored in the database and revoked on sign-out.
 - Sign-in throttling per account with counters in the database, and a structured security log that never contains a password, an e-mail address or a token.
+- Account page: name and delivery address, with the customer always taken from the session; return to the requested page after sign-in.

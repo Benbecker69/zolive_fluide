@@ -189,7 +189,33 @@
       "emailTaken": "Un compte existe déjà avec cette adresse e-mail. Connectez-vous, ou utilisez une autre adresse.",
       "invalidCredentials": "Adresse e-mail ou mot de passe incorrect.",
       "rejected": "Le compte n'a pas pu être créé. Vérifiez les champs et réessayez.",
-      "locked": "{minutes, plural, one {Trop de tentatives. Réessayez dans # minute.} other {Trop de tentatives. Réessayez dans # minutes.}}"
+      "locked": "{minutes, plural, one {Trop de tentatives. Réessayez dans # minute.} other {Trop de tentatives. Réessayez dans # minutes.}}",
+      "address": {
+        "recipient": "Indiquez le nom du destinataire.",
+        "line1": "Indiquez le numéro et la rue.",
+        "line2": "Le complément d'adresse est trop long.",
+        "postalCode": "Indiquez un code postal à cinq chiffres, par exemple 13100.",
+        "city": "Indiquez la ville."
+      }
+    },
+    "profile": {
+      "title": "Mes coordonnées",
+      "saveName": "Enregistrer le nom",
+      "saved": "Nom enregistré."
+    },
+    "address": {
+      "title": "Adresse de livraison",
+      "intro": "Elle sera proposée à chaque commande. La livraison se fait en France métropolitaine.",
+      "recipient": "Destinataire",
+      "line1": "Numéro et rue",
+      "line2": "Complément d'adresse (facultatif)",
+      "postalCode": "Code postal",
+      "city": "Ville",
+      "save": "Enregistrer l'adresse",
+      "saved": "Adresse enregistrée."
+    },
+    "session": {
+      "title": "Session"
     }
   }
 }
