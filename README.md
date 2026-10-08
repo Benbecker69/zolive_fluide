@@ -74,7 +74,7 @@ pnpm db:setup
 pnpm dev
 ```
 
-Pour l'instant, le site affiche la boutique (`/fr/boutique`, `/en/boutique`), les fiches produit, une page d'accueil d'attente et la charte graphique vivante sur `/fr/styleguide` : la page d'accueil arrive en fin de sprint 1. La maquette se consulte en ouvrant les fichiers de [`design/mockup/`](design/mockup/) dans un navigateur.
+Le site affiche la page d'accueil (`/fr`, `/en`), la boutique, les fiches produit et la charte graphique vivante sur `/fr/styleguide`. Le panier et les comptes arrivent au sprint 2. La maquette se consulte en ouvrant les fichiers de [`design/mockup/`](design/mockup/) dans un navigateur.
 
 ### Configuration
 

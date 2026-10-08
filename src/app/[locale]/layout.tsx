@@ -16,10 +16,6 @@ const LANGUAGES = [
   { code: "en", name: "English", short: "EN" },
 ] as const;
 
-export function generateStaticParams() {
-  return routing.locales.map((locale) => ({ locale }));
-}
-
 export async function generateMetadata({ params }: LayoutProps<"/[locale]">): Promise<Metadata> {
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) return {};
@@ -44,7 +40,14 @@ export default async function LocaleLayout({ children, params }: LayoutProps<"/[
           <AnnouncementBar>{t("announcement")}</AnnouncementBar>
           <SiteHeader
             logo={logo}
-            nav={{ label: t("mainNav"), items: [{ href: "/boutique", label: t("navShop") }] }}
+            nav={{
+              label: t("mainNav"),
+              items: [
+                { href: "/boutique", label: t("navShop") },
+                { href: "/#moulin", label: t("navMill") },
+                { href: "/#gout", label: t("navTaste") },
+              ],
+            }}
             actions={
               <LanguageSwitcher label={t("languageNav")} current={locale} languages={LANGUAGES} />
             }

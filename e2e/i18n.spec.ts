@@ -44,14 +44,14 @@ test.describe("language switcher", () => {
     await switcher.getByRole("link", { name: "English" }).click();
     await expect(page).toHaveURL(/\/en$/);
     await expect(page.locator("html")).toHaveAttribute("lang", "en");
-    await expect(page.getByText("Shop under construction.")).toBeVisible();
+    await expect(page.getByRole("link", { name: "Discover the shop" })).toBeVisible();
 
     await page
       .getByRole("navigation", { name: "Language" })
       .getByRole("link", { name: "Français" })
       .click();
     await expect(page).toHaveURL(/\/fr$/);
-    await expect(page.getByText("Boutique en construction.")).toBeVisible();
+    await expect(page.getByRole("link", { name: "Découvrir la boutique" })).toBeVisible();
   });
 
   test("each language declares its alternate versions", async ({ request }) => {

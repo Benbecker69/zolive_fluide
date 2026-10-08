@@ -26,3 +26,4 @@ The format is based on [Keep a Changelog 1.1.0](https://keepachangelog.com/en/1.
 - Integration tests against a real PostgreSQL database, locally and in the pipeline.
 - Shop listing: products read from the database, filter by category and sort carried by the URL, prices formatted for the language, usable without JavaScript.
 - Product page: formats and quantity with the price, price per litre and total kept in sync, unavailable formats, tasting profile, related products, localized 404 for unknown products.
+- Home page: hero, category tiles and favourite products read from the database, the mill story and the taste guide.

@@ -10,6 +10,11 @@ import { QuantityStepper } from "@/ui/quantity-stepper";
 import { CartLink } from "@/ui/site-chrome";
 import { TextField } from "@/ui/text-field";
 
+// Static page without data: generated at build time, in French only.
+export function generateStaticParams() {
+  return [{ locale: "fr" }];
+}
+
 export const metadata: Metadata = {
   title: "Charte graphique — Zolive",
   robots: { index: false },
