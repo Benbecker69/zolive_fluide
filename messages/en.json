@@ -8,7 +8,9 @@
     "announcement": "New harvest available — cold-pressed, bottled at the mill",
     "homeLabel": "Zolive, back to home",
     "languageNav": "Language",
-    "notice": "© 2026 Zolive"
+    "notice": "© 2026 Zolive",
+    "mainNav": "Main navigation",
+    "navShop": "Shop"
   },
   "home": {
     "title": "Zolive",
@@ -18,5 +20,26 @@
     "title": "Page not found",
     "description": "The page you asked for does not exist or has moved.",
     "backHome": "Back to home"
+  },
+  "shop": {
+    "metaTitle": "Shop — Zolive",
+    "breadcrumb": "Breadcrumb",
+    "home": "Home",
+    "shopCrumb": "Shop",
+    "title": "The whole <em>shop</em>",
+    "intro": "Oils, olives and what goes with them. Everything comes from the mill or from neighbours we know.",
+    "filterLabel": "Filter by category",
+    "all": "All",
+    "sortLabel": "Sort by",
+    "sortApply": "Sort",
+    "sort": {
+      "featured": "Our favourites",
+      "price-asc": "Price, low to high",
+      "price-desc": "Price, high to low",
+      "name": "Name"
+    },
+    "count": "{count, plural, =0 {No product} one {# product} other {# products}}",
+    "newHarvest": "New harvest",
+    "empty": "No product in this category for now."
   }
 }

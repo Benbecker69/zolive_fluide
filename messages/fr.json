@@ -8,7 +8,9 @@
     "announcement": "Nouvelle récolte disponible — pressée à froid, mise en bouteille au moulin",
     "homeLabel": "Zolive, retour à l'accueil",
     "languageNav": "Langue",
-    "notice": "© 2026 Zolive"
+    "notice": "© 2026 Zolive",
+    "mainNav": "Navigation principale",
+    "navShop": "Boutique"
   },
   "home": {
     "title": "Zolive",
@@ -18,5 +20,26 @@
     "title": "Page introuvable",
     "description": "La page demandée n'existe pas ou a été déplacée.",
     "backHome": "Retour à l'accueil"
+  },
+  "shop": {
+    "metaTitle": "Boutique — Zolive",
+    "breadcrumb": "Fil d'Ariane",
+    "home": "Accueil",
+    "shopCrumb": "Boutique",
+    "title": "Toute la <em>boutique</em>",
+    "intro": "Des huiles, des olives et de quoi les accompagner. Tout vient du moulin ou de voisins que nous connaissons.",
+    "filterLabel": "Filtrer par rayon",
+    "all": "Tout",
+    "sortLabel": "Trier par",
+    "sortApply": "Trier",
+    "sort": {
+      "featured": "Nos préférées",
+      "price-asc": "Prix croissant",
+      "price-desc": "Prix décroissant",
+      "name": "Nom"
+    },
+    "count": "{count, plural, =0 {Aucun produit} one {# produit} other {# produits}}",
+    "newHarvest": "Nouvelle récolte",
+    "empty": "Aucun produit dans ce rayon pour le moment."
   }
 }

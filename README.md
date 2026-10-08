@@ -74,7 +74,7 @@ pnpm db:setup
 pnpm dev
 ```
 
-Pour l'instant, le site affiche une page d'attente en français (`/fr`) et en anglais (`/en`), et la charte graphique vivante sur `/fr/styleguide` : les pages du catalogue arrivent au fil du sprint 1. La maquette se consulte en ouvrant les fichiers de [`design/mockup/`](design/mockup/) dans un navigateur.
+Pour l'instant, le site affiche la boutique (`/fr/boutique`, `/en/boutique`), une page d'accueil d'attente et la charte graphique vivante sur `/fr/styleguide` : la fiche produit et la page d'accueil arrivent dans la suite du sprint 1. La maquette se consulte en ouvrant les fichiers de [`design/mockup/`](design/mockup/) dans un navigateur.
 
 ### Configuration
 

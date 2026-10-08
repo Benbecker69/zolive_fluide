@@ -92,7 +92,7 @@ const translatedText = {
   rules: {
     "react/jsx-no-literals": [
       "error",
-      { noStrings: true, ignoreProps: true, allowedStrings: ["zolive", "·", "—"] },
+      { noStrings: true, ignoreProps: true, allowedStrings: ["zolive", "·", "—", "/"] },
     ],
   },
 };
