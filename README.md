@@ -47,21 +47,47 @@ Index complet : [`docs/README.md`](docs/README.md).
 
 ## Lancer le site
 
-Prérequis : Node.js 24 (la version est déclarée dans `.node-version`) et pnpm 11.
+Dans les deux cas, je pars du fichier d'exemple de configuration :
+
+```bash
+cp .env.example .env
+```
+
+### En démonstration : Docker seul
+
+Prérequis : Docker. Cette commande construit l'application en mode production, démarre PostgreSQL et attend que l'ensemble soit en bonne santé :
+
+```bash
+docker compose --profile demo up --build --wait
+```
+
+Le site répond sur `http://localhost:3000` et son état sur `http://localhost:3000/api/health`. Si le port 3000 est déjà pris, je décommente `APP_PORT` dans `.env`. Pour tout arrêter : `docker compose --profile demo down`.
+
+### En développement : rechargement à chaud
+
+Prérequis : Node.js 24 (la version est déclarée dans `.node-version`), pnpm 11 et Docker pour la base.
 
 ```bash
 pnpm install
+pnpm db:up
 pnpm dev
 ```
 
-Le site répond sur `http://localhost:3000`. Pour l'instant, il n'affiche qu'une page d'attente : les pages du catalogue arrivent au fil du sprint 1. La maquette se consulte en ouvrant les fichiers de [`design/mockup/`](design/mockup/) dans un navigateur.
+Pour l'instant, le site n'affiche qu'une page d'attente : les pages du catalogue arrivent au fil du sprint 1. La maquette se consulte en ouvrant les fichiers de [`design/mockup/`](design/mockup/) dans un navigateur.
+
+### Configuration
+
+Toute la configuration passe par des variables d'environnement, décrites dans [`.env.example`](.env.example). L'application les valide au démarrage : s'il en manque une ou si une valeur est invalide, elle s'arrête et nomme la variable en cause, sans jamais afficher sa valeur.
 
 ### Commandes
 
 | Commande | Rôle |
 | --- | --- |
 | `pnpm dev` | Serveur de développement |
-| `pnpm build` puis `pnpm start` | Build et serveur de production |
+| `pnpm build` | Build de production (le serveur de production se lance par Docker) |
+| `pnpm db:up` / `pnpm db:down` | Base PostgreSQL de développement, publiée sur la machine locale uniquement |
+| `pnpm demo:up` / `pnpm demo:down` | Profil de démonstration complet |
+| `pnpm demo:smoke` | Test de fumée du profil de démonstration |
 | `pnpm lint` | Analyse statique, dont la règle de dépendances entre couches |
 | `pnpm typecheck` | Vérification des types en mode strict |
 | `pnpm test` | Tests unitaires et tests de l'outillage |
