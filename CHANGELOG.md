@@ -22,3 +22,5 @@ The format is based on [Keep a Changelog 1.1.0](https://keepachangelog.com/en/1.
 - Design system: theme tokens, self-hosted fonts and the base components of the style guide, shown on a living style guide page.
 - End-to-end and accessibility tests run against the production build on every pull request.
 - French and English versions of the site: language prefix in the URL, redirect to the visitor's language, language switcher, localized not-found page, skip link.
+- Catalogue schema (categories, products, formats) with SQL migrations, database constraints on prices and stock, and a deterministic demonstration seed.
+- Integration tests against a real PostgreSQL database, locally and in the pipeline.

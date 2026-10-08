@@ -1,8 +1,10 @@
 import "server-only";
 
+import { drizzle, type NodePgDatabase } from "drizzle-orm/node-postgres";
 import { Pool } from "pg";
 
 import { getEnv } from "./env";
+import * as schema from "./schema";
 
 /**
  * One connection pool per process. In development, hot reloading re-evaluates
@@ -17,4 +19,9 @@ export function getPool(): Pool {
     connectionTimeoutMillis: 2_000,
   });
   return globalForDb.zolivePool;
+}
+
+/** Typed query builder over the pool. Only the data layer may use it. */
+export function getDb(): NodePgDatabase<typeof schema> {
+  return drizzle(getPool(), { schema });
 }

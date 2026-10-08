@@ -4,6 +4,8 @@ allowBuilds:
   # dependencies: their install scripts are not needed.
   "@parcel/watcher": false
   "@swc/core": false
+  # Bundler used by the migration generator; it ships prebuilt binaries.
+  esbuild: false
   # Native resolver used by the ESLint import plugin (pulled in by eslint-config-next).
   unrs-resolver: true
 
@@ -20,3 +22,4 @@ minimumReleaseAgeExclude:
   - "@playwright/test@1.64.0"
   - playwright-core@1.64.0
   - playwright@1.64.0
+  - drizzle-orm@0.45.4

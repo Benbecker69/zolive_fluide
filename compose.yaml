@@ -18,6 +18,20 @@ services:
       timeout: 3s
       retries: 10
 
+  # One-off administration task: brings the schema up to date, then loads the demonstration
+  # catalogue if the database is empty. The application only starts once it has succeeded.
+  setup:
+    profiles: [demo]
+    build:
+      context: .
+      target: build
+    command: ["sh", "-c", "node scripts/db/migrate.mjs && node scripts/db/seed.mjs --if-empty"]
+    environment:
+      DATABASE_URL: postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}
+    depends_on:
+      db:
+        condition: service_healthy
+
   app:
     profiles: [demo]
     build: .
@@ -29,6 +43,8 @@ services:
     depends_on:
       db:
         condition: service_healthy
+      setup:
+        condition: service_completed_successfully
 
 volumes:
   db-data:

@@ -55,7 +55,7 @@ cp .env.example .env
 
 ### En démonstration : Docker seul
 
-Prérequis : Docker. Cette commande construit l'application en mode production, démarre PostgreSQL et attend que l'ensemble soit en bonne santé :
+Prérequis : Docker. Cette commande construit l'application en mode production, démarre PostgreSQL, applique les migrations, charge le catalogue de démonstration si la base est vide, et attend que l'ensemble soit en bonne santé :
 
 ```bash
 docker compose --profile demo up --build --wait
@@ -70,6 +70,7 @@ Prérequis : Node.js 24 (la version est déclarée dans `.node-version`), pnpm 1
 ```bash
 pnpm install
 pnpm db:up
+pnpm db:setup
 pnpm dev
 ```
 
@@ -86,6 +87,9 @@ Toute la configuration passe par des variables d'environnement, décrites dans [
 | `pnpm dev` | Serveur de développement |
 | `pnpm build` | Build de production (le serveur de production se lance par Docker) |
 | `pnpm db:up` / `pnpm db:down` | Base PostgreSQL de développement, publiée sur la machine locale uniquement |
+| `pnpm db:setup` | Applique les migrations puis charge le catalogue de démonstration |
+| `pnpm db:generate` | Génère une migration SQL à partir du schéma (`src/data/schema.ts`) |
+| `pnpm test:integration` | Tests d'intégration, sur une base PostgreSQL réelle et dédiée |
 | `pnpm demo:up` / `pnpm demo:down` | Profil de démonstration complet |
 | `pnpm demo:smoke` | Test de fumée du profil de démonstration |
 | `pnpm lint` | Analyse statique, dont la règle de dépendances entre couches |
