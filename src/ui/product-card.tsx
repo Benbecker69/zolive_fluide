@@ -6,7 +6,7 @@ import { Packshot, type PackshotKind } from "./packshots";
 
 type Tint = "sage" | "zest" | "sky" | "peach";
 
-const tintClass: Record<Tint, string> = {
+export const tintClass: Record<Tint, string> = {
   sage: "bg-tint-sage",
   zest: "bg-tint-zest",
   sky: "bg-tint-sky",

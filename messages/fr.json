@@ -41,5 +41,25 @@
     "count": "{count, plural, =0 {Aucun produit} one {# produit} other {# produits}}",
     "newHarvest": "Nouvelle récolte",
     "empty": "Aucun produit dans ce rayon pour le moment."
+  },
+  "product": {
+    "breadcrumb": "Fil d'Ariane",
+    "home": "Accueil",
+    "shop": "Boutique",
+    "newHarvest": "Nouvelle récolte",
+    "format": "Format",
+    "unavailable": "indisponible",
+    "perLitre": "soit {price} le litre",
+    "quantity": "Quantité",
+    "decrease": "Diminuer la quantité",
+    "increase": "Augmenter la quantité",
+    "total": "Total : <strong>{amount}</strong>",
+    "tastingTitle": "Profil de <em>dégustation</em>",
+    "tastingIntro": "Trois repères suffisent à lire une huile d'olive : le fruité au nez, l'amertume sur la langue, l'ardence au fond de la gorge.",
+    "fruitiness": "Fruité",
+    "bitterness": "Amertume",
+    "pungency": "Ardence",
+    "scale": "{label} : {note} sur 5",
+    "relatedTitle": "À goûter <em>aussi</em>"
   }
 }
