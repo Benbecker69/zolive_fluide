@@ -23,6 +23,7 @@ Je consigne ici chaque décision structurante du projet sous la forme d'un ADR (
 | [0008](0008-git-workflow.md) | GitHub flow, commits conventionnels, fusion en *squash* | Acceptée | 2026-10-08 |
 | [0009](0009-simulated-payment-port.md) | Paiement simulé derrière une interface | Acceptée | 2026-10-08 |
 | [0010](0010-docker-compose-local-runtime.md) | Exécution locale avec Docker Compose | Acceptée | 2026-10-08 |
+| [0011](0011-pin-eslint-9.md) | Épingler ESLint en version 9 | Acceptée | 2026-10-08 |
 
 Statuts possibles : *Proposée*, *Acceptée*, *Remplacée par NNNN*, *Abandonnée*.
 
