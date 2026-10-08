@@ -73,7 +73,7 @@ pnpm db:up
 pnpm dev
 ```
 
-Pour l'instant, le site n'affiche qu'une page d'attente : les pages du catalogue arrivent au fil du sprint 1. La maquette se consulte en ouvrant les fichiers de [`design/mockup/`](design/mockup/) dans un navigateur.
+Pour l'instant, le site affiche une page d'attente et la charte graphique vivante sur `/styleguide` : les pages du catalogue arrivent au fil du sprint 1. La maquette se consulte en ouvrant les fichiers de [`design/mockup/`](design/mockup/) dans un navigateur.
 
 ### Configuration
 
@@ -91,6 +91,7 @@ Toute la configuration passe par des variables d'environnement, décrites dans [
 | `pnpm lint` | Analyse statique, dont la règle de dépendances entre couches |
 | `pnpm typecheck` | Vérification des types en mode strict |
 | `pnpm test` | Tests unitaires et tests de l'outillage |
+| `pnpm e2e` | Tests de bout en bout et d'accessibilité, contre le profil de démonstration démarré |
 | `pnpm format` / `pnpm format:check` | Mise en forme du code |
 | `pnpm knip` | Détection du code et des dépendances inutilisés |
 | `pnpm audit` | Vulnérabilités connues des dépendances, bloquant à partir du niveau « haut » |

@@ -98,6 +98,8 @@ Le filet `line` (`#DCE4D5`) n'atteint que **1,23:1** sur `ground` et 1,30:1 sur 
 
 Ma décision : je ne modifie pas la maquette, elle reste le reflet de ce qui a été validé. Je corrige l'écart à l'implémentation, par un jeton dédié aux contours de contrôles, à 3:1 minimum ; il est suivi dans l'[issue du système de design](https://github.com/Benbecker69/zolive_fluide/issues/15) et dans l'[ADR 0006](../docs/adr/0006-tailwind-design-tokens.md).
 
+Correction apportée : le jeton `control-line` vaut `#74877B`, soit 3,61:1 sur `ground`, 3,82:1 sur `surface` et 3,15:1 sur `tint-sage`.
+
 ## Régénérer les captures
 
 Je produis les captures avec Chrome en mode sans interface, à 1440 px de large, à partir des pages de `mockup/`. Je les régénère si une page est modifiée.
