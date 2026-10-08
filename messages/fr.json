@@ -216,6 +216,31 @@
     },
     "session": {
       "title": "Session"
+    },
+    "delete": {
+      "title": "Supprimer mon compte",
+      "intro": "La suppression est immédiate et définitive.",
+      "removedTitle": "Ce qui est supprimé",
+      "removed": {
+        "identity": "votre nom, votre adresse e-mail et votre mot de passe",
+        "address": "votre adresse de livraison",
+        "sessions": "vos sessions, sur tous vos appareils",
+        "cart": "votre panier enregistré"
+      },
+      "keptTitle": "Ce qui est conservé",
+      "kept": "Les journaux de sécurité du site, qui ne contiennent ni votre nom, ni votre adresse e-mail, ni votre mot de passe.",
+      "password": "Confirmez avec votre mot de passe",
+      "submit": "Supprimer définitivement mon compte",
+      "errors": {
+        "passwordRequired": "Saisissez votre mot de passe pour confirmer la suppression.",
+        "wrongPassword": "Mot de passe incorrect. Votre compte n'a pas été supprimé."
+      }
+    },
+    "deleted": {
+      "metaTitle": "Compte supprimé — Zolive",
+      "title": "Votre compte est supprimé",
+      "intro": "Vos coordonnées, votre adresse de livraison, vos sessions et votre panier ont été effacés.",
+      "cta": "Retour à la boutique"
     }
   }
 }

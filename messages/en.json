@@ -216,6 +216,31 @@
     },
     "session": {
       "title": "Session"
+    },
+    "delete": {
+      "title": "Delete my account",
+      "intro": "Deletion is immediate and cannot be undone.",
+      "removedTitle": "What is deleted",
+      "removed": {
+        "identity": "your name, your email address and your password",
+        "address": "your delivery address",
+        "sessions": "your sessions, on all your devices",
+        "cart": "your saved cart"
+      },
+      "keptTitle": "What is kept",
+      "kept": "The security logs of the site, which contain neither your name, nor your email address, nor your password.",
+      "password": "Confirm with your password",
+      "submit": "Delete my account permanently",
+      "errors": {
+        "passwordRequired": "Enter your password to confirm the deletion.",
+        "wrongPassword": "Incorrect password. Your account has not been deleted."
+      }
+    },
+    "deleted": {
+      "metaTitle": "Account deleted — Zolive",
+      "title": "Your account is deleted",
+      "intro": "Your details, your delivery address, your sessions and your cart have been erased.",
+      "cta": "Back to the shop"
     }
   }
 }

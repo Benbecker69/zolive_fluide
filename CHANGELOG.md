@@ -33,3 +33,4 @@ The format is based on [Keep a Changelog 1.1.0](https://keepachangelog.com/en/1.
 - Sign-in throttling per account with counters in the database, and a structured security log that never contains a password, an e-mail address or a token.
 - Account page: name and delivery address, with the customer always taken from the session; return to the requested page after sign-in.
 - Cart kept at sign-in and sign-up: the guest cart joins the account, quantities are added up to the available stock, and the device forgets the cart at sign-out.
+- Account deletion from the account page, confirmed with the password: the page states what is deleted and what is kept, and the account, its sessions, its delivery address and its cart are removed.
