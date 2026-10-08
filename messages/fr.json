@@ -155,5 +155,40 @@
     "shippingLater": "calculée à l'étape suivante",
     "pricesNote": "Les prix et la disponibilité sont vérifiés à nouveau au moment de la commande.",
     "continueShopping": "Continuer mes achats"
+  },
+  "account": {
+    "link": "Compte",
+    "name": "Nom",
+    "email": "Adresse e-mail",
+    "password": "Mot de passe",
+    "passwordHint": "Au moins {min} caractères. Une phrase facile à retenir convient très bien.",
+    "signOut": "Se déconnecter",
+    "signIn": {
+      "metaTitle": "Connexion — Zolive",
+      "title": "Connexion",
+      "intro": "Retrouvez votre compte et vos commandes.",
+      "submit": "Se connecter",
+      "noAccount": "Pas encore de compte ? <link>Créer un compte</link>"
+    },
+    "signUp": {
+      "metaTitle": "Créer un compte — Zolive",
+      "title": "Créer un compte",
+      "intro": "Un compte suffit pour commander et suivre vos commandes.",
+      "submit": "Créer mon compte",
+      "haveAccount": "Déjà un compte ? <link>Se connecter</link>"
+    },
+    "home": {
+      "metaTitle": "Mon compte — Zolive",
+      "title": "Mon compte",
+      "greeting": "Bonjour {name}."
+    },
+    "errors": {
+      "name": "Indiquez votre nom.",
+      "email": "Indiquez une adresse e-mail valide, par exemple prenom@exemple.fr.",
+      "password": "Le mot de passe doit contenir au moins {min} caractères.",
+      "emailTaken": "Un compte existe déjà avec cette adresse e-mail. Connectez-vous, ou utilisez une autre adresse.",
+      "invalidCredentials": "Adresse e-mail ou mot de passe incorrect.",
+      "rejected": "Le compte n'a pas pu être créé. Vérifiez les champs et réessayez."
+    }
   }
 }
