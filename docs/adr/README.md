@@ -16,7 +16,7 @@ Je consigne ici chaque décision structurante du projet sous la forme d'un ADR (
 | [0001](0001-record-architecture-decisions.md) | Consigner les décisions d'architecture | Acceptée | 2026-10-08 |
 | [0002](0002-nextjs-modular-monolith.md) | Une seule application Next.js, découpée en couches | Acceptée | 2026-10-08 |
 | [0003](0003-postgresql-drizzle.md) | PostgreSQL et Drizzle ORM | Acceptée | 2026-10-08 |
-| [0004](0004-better-auth-database-sessions.md) | Better Auth, sessions en base, Argon2id | Acceptée | 2026-10-08 |
+| [0004](0004-better-auth-database-sessions.md) | Better Auth, sessions en base, Argon2id | Acceptée, limitation des tentatives remplacée par 0014 | 2026-10-08 |
 | [0005](0005-next-intl-locale-prefix.md) | next-intl et préfixe de langue dans l'URL | Acceptée | 2026-10-08 |
 | [0006](0006-tailwind-design-tokens.md) | Tailwind CSS 4 et jetons de design | Acceptée | 2026-10-08 |
 | [0007](0007-testing-strategy.md) | Stratégie de tests | Acceptée | 2026-10-08 |
@@ -26,6 +26,7 @@ Je consigne ici chaque décision structurante du projet sous la forme d'un ADR (
 | [0011](0011-pin-eslint-9.md) | Épingler ESLint en version 9 | Acceptée | 2026-10-08 |
 | [0012](0012-i18n-cross-cutting-layer.md) | Faire de l'internationalisation une couche transverse | Acceptée | 2026-10-08 |
 | [0013](0013-on-demand-static-pages.md) | Générer les pages du catalogue à la demande, puis les servir depuis le cache | Acceptée | 2026-10-08 |
+| [0014](0014-sign-in-throttling.md) | Limiter les tentatives de connexion par compte, dans la couche d'accès aux données | Acceptée | 2026-10-08 |
 
 Statuts possibles : *Proposée*, *Acceptée*, *Remplacée par NNNN*, *Abandonnée*.
 

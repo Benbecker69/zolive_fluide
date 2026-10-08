@@ -188,7 +188,8 @@
       "password": "Le mot de passe doit contenir au moins {min} caractères.",
       "emailTaken": "Un compte existe déjà avec cette adresse e-mail. Connectez-vous, ou utilisez une autre adresse.",
       "invalidCredentials": "Adresse e-mail ou mot de passe incorrect.",
-      "rejected": "Le compte n'a pas pu être créé. Vérifiez les champs et réessayez."
+      "rejected": "Le compte n'a pas pu être créé. Vérifiez les champs et réessayez.",
+      "locked": "{minutes, plural, one {Trop de tentatives. Réessayez dans # minute.} other {Trop de tentatives. Réessayez dans # minutes.}}"
     }
   }
 }

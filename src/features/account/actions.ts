@@ -18,6 +18,7 @@ export type AccountFormState =
   | { status: "invalid"; fields: AccountField[]; values: { name?: string; email?: string } }
   | { status: "email-taken"; values: { name?: string; email?: string } }
   | { status: "invalid-credentials"; values: { email?: string } }
+  | { status: "locked"; minutes: number; values: { email?: string } }
   | { status: "rejected"; values: { name?: string; email?: string } };
 
 const text = (value: FormDataEntryValue | null) => (typeof value === "string" ? value : "");
@@ -56,7 +57,11 @@ export async function signInAction(
   if (!parsed.success) return { status: "invalid-credentials", values };
 
   const result = await signIn(parsed.data, await headers());
-  if (!result.ok) return { status: "invalid-credentials", values };
+  if (!result.ok) {
+    return result.reason === "too-many-attempts"
+      ? { status: "locked", minutes: Math.ceil(result.retryAfterSeconds / 60), values }
+      : { status: "invalid-credentials", values };
+  }
 
   return redirect({ href: "/compte", locale: await getLocale() });
 }
