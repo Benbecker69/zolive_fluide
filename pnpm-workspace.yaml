@@ -2,3 +2,12 @@
 allowBuilds:
   # Native resolver used by the ESLint import plugin (pulled in by eslint-config-next).
   unrs-resolver: true
+
+# Advisories accepted after analysis. Each entry needs a reason and a tracking issue.
+auditConfig:
+  ignoreGhsas:
+    # braces <= 3.0.3, stack exhaustion on deeply nested glob patterns (high).
+    # No patched release exists yet (3.0.4 is announced, not published). The package is only
+    # reached at lint time through the Next.js lint plugin, never at runtime, and it only
+    # receives glob patterns written in this repository. Tracked in risk R-16.
+    - GHSA-vfj7-8cjw-p6xm
