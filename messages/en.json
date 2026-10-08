@@ -10,11 +10,78 @@
     "languageNav": "Language",
     "notice": "© 2026 Zolive",
     "mainNav": "Main navigation",
-    "navShop": "Shop"
+    "navShop": "Shop",
+    "navMill": "The mill",
+    "navTaste": "Taste guide"
   },
   "home": {
-    "title": "Zolive",
-    "comingSoon": "Shop under construction."
+    "eyebrow": "Olive oils · Fine foods",
+    "title": "Olive oil, <em>quite simply</em> good.",
+    "intro": "Cold-pressed oils, olives picked when ripe and a few good things to put on the table. Nothing more, nothing less.",
+    "cta": "Discover the shop",
+    "secondaryCta": "How we work",
+    "sticker": "New harvest",
+    "visual": {
+      "green": "green fruity",
+      "ripe": "ripe fruity",
+      "lemon": "with lemon"
+    },
+    "reassurance": {
+      "coldPressed": "First cold pressing",
+      "harvest": "This year's harvest",
+      "parcel": "Careful parcels, no plastic",
+      "payment": "Secure payment"
+    },
+    "categoriesTitle": "Everything for a <em>good</em> table.",
+    "allShop": "The whole shop",
+    "favouritesTitle": "Current <em>favourites</em>",
+    "allProducts": "See all products",
+    "newHarvest": "New harvest",
+    "photo": "Photo",
+    "mill": {
+      "eyebrow": "The mill",
+      "title": "From the orchard to the bottle, <em>no detour.</em>",
+      "intro": "We pick, we press, we bottle. No middleman, no blend from elsewhere: what is written on the label is what is inside.",
+      "photoOrchard": "Harvest in the olive grove, morning light",
+      "photoBread": "A drizzle of oil on toasted bread",
+      "steps": {
+        "picked": {
+          "title": "Picked by hand",
+          "text": "At the right ripeness, variety by variety."
+        },
+        "pressed": {
+          "title": "Cold-pressed",
+          "text": "Within hours of picking."
+        },
+        "bottled": {
+          "title": "Bottled at the mill",
+          "text": "In tinted glass, away from light."
+        }
+      }
+    },
+    "taste": {
+      "eyebrow": "Taste guide",
+      "title": "Which fruity oil is <em>made for you</em>?",
+      "atTable": "At the table",
+      "green": {
+        "name": "Green <em>fruity</em>",
+        "notes": "Cut grass, artichoke, fresh almond. Lively, slightly pungent at the finish.",
+        "pairings": "Salads, grilled fish, raw vegetables",
+        "link": "Taste the green fruity"
+      },
+      "ripe": {
+        "name": "Ripe <em>fruity</em>",
+        "notes": "Dried fruit, ripe apple, white flowers. Soft and round, very little bitterness.",
+        "pairings": "Pasta, poultry, pastries made with oil",
+        "link": "Taste the ripe fruity"
+      },
+      "black": {
+        "name": "Black <em>fruity</em>",
+        "notes": "Candied olive, cocoa, undergrowth. An old-style taste with no bitterness or pungency.",
+        "pairings": "Mashed potatoes, mushrooms, mature cheeses",
+        "link": "Taste the black fruity"
+      }
+    }
   },
   "notFound": {
     "title": "Page not found",

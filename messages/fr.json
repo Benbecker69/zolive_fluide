@@ -10,11 +10,78 @@
     "languageNav": "Langue",
     "notice": "© 2026 Zolive",
     "mainNav": "Navigation principale",
-    "navShop": "Boutique"
+    "navShop": "Boutique",
+    "navMill": "Le moulin",
+    "navTaste": "Guide du goût"
   },
   "home": {
-    "title": "Zolive",
-    "comingSoon": "Boutique en construction."
+    "eyebrow": "Huiles d'olive · Épicerie fine",
+    "title": "L'huile d'olive, <em>tout simplement</em> bonne.",
+    "intro": "Des huiles pressées à froid, des olives cueillies à maturité et quelques bonnes choses à poser sur la table. Rien de plus, rien de moins.",
+    "cta": "Découvrir la boutique",
+    "secondaryCta": "Notre savoir-faire",
+    "sticker": "Nouvelle récolte",
+    "visual": {
+      "green": "fruité vert",
+      "ripe": "fruité mûr",
+      "lemon": "au citron"
+    },
+    "reassurance": {
+      "coldPressed": "Première pression à froid",
+      "harvest": "Récolte de l'année",
+      "parcel": "Colis soignés, sans plastique",
+      "payment": "Paiement sécurisé"
+    },
+    "categoriesTitle": "Tout pour une <em>bonne</em> table.",
+    "allShop": "Toute la boutique",
+    "favouritesTitle": "Les <em>préférées</em> du moment",
+    "allProducts": "Voir tous les produits",
+    "newHarvest": "Nouvelle récolte",
+    "photo": "Photo",
+    "mill": {
+      "eyebrow": "Le moulin",
+      "title": "Du verger à la bouteille, <em>sans détour.</em>",
+      "intro": "Nous cueillons, nous pressons, nous mettons en bouteille. Pas d'intermédiaire, pas d'assemblage venu d'ailleurs : ce qui est écrit sur l'étiquette est ce qu'il y a dedans.",
+      "photoOrchard": "Récolte dans l'oliveraie, lumière du matin",
+      "photoBread": "Filet d'huile sur du pain grillé",
+      "steps": {
+        "picked": {
+          "title": "Cueillies à la main",
+          "text": "À juste maturité, variété par variété."
+        },
+        "pressed": {
+          "title": "Pressées à froid",
+          "text": "Dans les heures qui suivent la cueillette."
+        },
+        "bottled": {
+          "title": "Mises en bouteille au moulin",
+          "text": "En verre teinté, à l'abri de la lumière."
+        }
+      }
+    },
+    "taste": {
+      "eyebrow": "Guide du goût",
+      "title": "Quel fruité est <em>fait pour vous</em> ?",
+      "atTable": "À table",
+      "green": {
+        "name": "Fruité <em>vert</em>",
+        "notes": "Herbe coupée, artichaut, amande fraîche. Vif, un peu ardent en fin de bouche.",
+        "pairings": "Salades, poissons grillés, légumes crus",
+        "link": "Goûter le fruité vert"
+      },
+      "ripe": {
+        "name": "Fruité <em>mûr</em>",
+        "notes": "Fruits secs, pomme mûre, fleurs blanches. Doux et rond, très peu d'amertume.",
+        "pairings": "Pâtes, volailles, pâtisseries à l'huile",
+        "link": "Goûter le fruité mûr"
+      },
+      "black": {
+        "name": "Fruité <em>noir</em>",
+        "notes": "Olive confite, cacao, sous-bois. Un goût à l'ancienne, sans amertume ni ardence.",
+        "pairings": "Purées, champignons, fromages affinés",
+        "link": "Goûter le fruité noir"
+      }
+    }
   },
   "notFound": {
     "title": "Page introuvable",
