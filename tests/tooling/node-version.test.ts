@@ -19,6 +19,11 @@ describe("Node.js version", () => {
     expect(manifest.engines.node).toBe(`${declared}.x`);
   });
 
+  it("matches the default base image of the Dockerfile", () => {
+    expect(readFileSync("Dockerfile", "utf8")).toContain(`ARG NODE_VERSION=${declared}
+`);
+  });
+
   it("matches the running Node.js", () => {
     expect(process.versions.node.split(".")[0]).toBe(declared);
   });

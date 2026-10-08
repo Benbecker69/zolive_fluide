@@ -1,0 +1,7 @@
+# Development override: publishes the database on the local machine only,
+# for an application started with `pnpm dev`.
+#   docker compose -f compose.yaml -f compose.dev.yaml up -d --wait db
+services:
+  db:
+    ports:
+      - "127.0.0.1:5432:5432"
