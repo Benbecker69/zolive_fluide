@@ -33,7 +33,7 @@ afterAll(async () => {
 
 describe("signing up", () => {
   it("creates the user, stores an Argon2id hash and opens a session in the database", async () => {
-    expect(await signUp(camille, headers())).toEqual({ ok: true });
+    expect(await signUp(camille, headers())).toMatchObject({ ok: true });
 
     const users = await client.query('select name, email from "user"');
     expect(users.rows).toEqual([{ name: "Camille Martin", email: "camille@example.org" }]);
@@ -76,7 +76,9 @@ describe("signing in", () => {
   });
 
   it("opens a session for the right credentials", async () => {
-    expect(await signIn({ email: camille.email, password: camille.password }, headers())).toEqual({
+    expect(
+      await signIn({ email: camille.email, password: camille.password }, headers()),
+    ).toMatchObject({
       ok: true,
     });
     expect(await count("session")).toBe(1);

@@ -57,7 +57,7 @@ const events = () => lines.map((line) => (JSON.parse(line) as { event: string })
 describe("sign-in throttling", () => {
   it("still accepts the right password just below the limit", async () => {
     await failTimes(MAX_FAILURES - 1);
-    expect(await succeed(start)).toEqual({ ok: true });
+    expect(await succeed(start)).toMatchObject({ ok: true });
   });
 
   it("locks the account once the limit is reached, even for the right password", async () => {
@@ -77,7 +77,7 @@ describe("sign-in throttling", () => {
 
   it("unlocks by itself after the lock duration", async () => {
     await failTimes(MAX_FAILURES);
-    expect(await succeed(after(LOCK_MINUTES))).toEqual({ ok: true });
+    expect(await succeed(after(LOCK_MINUTES))).toMatchObject({ ok: true });
   });
 
   it("forgets the failures after a successful sign-in", async () => {
@@ -85,14 +85,14 @@ describe("sign-in throttling", () => {
     await succeed(start);
     await failTimes(MAX_FAILURES - 1);
 
-    expect(await succeed(start)).toEqual({ ok: true });
+    expect(await succeed(start)).toMatchObject({ ok: true });
   });
 
   it("forgets failures older than the window", async () => {
     await failTimes(MAX_FAILURES - 1, camille.email, start);
     await fail(camille.email, after(FAILURE_WINDOW_MINUTES + 1));
 
-    expect(await succeed(after(FAILURE_WINDOW_MINUTES + 2))).toEqual({ ok: true });
+    expect(await succeed(after(FAILURE_WINDOW_MINUTES + 2))).toMatchObject({ ok: true });
   });
 
   it("behaves the same for an address without account, so it reveals nothing", async () => {
@@ -106,7 +106,7 @@ describe("sign-in throttling", () => {
 
   it("locks one account without touching the others", async () => {
     await failTimes(MAX_FAILURES, "nobody@example.org");
-    expect(await succeed(after(1))).toEqual({ ok: true });
+    expect(await succeed(after(1))).toMatchObject({ ok: true });
   });
 
   it("treats the e-mail without regard to letter case or surrounding spaces", async () => {

@@ -175,6 +175,24 @@ Ce diagramme est le contrat que les tests d'intégration de la commande vérifie
 
 Le compteur du panier dans l'en-tête est la seule partie dynamique des pages publiques. Je le charge à part pour ne pas rendre toute la page dynamique : un petit composant client l'obtient par une requête propre au visiteur, une fois la page affichée, puis à chaque modification du panier. Sans JavaScript, le lien vers le panier reste présent, sans son compteur.
 
+## Le panier à la connexion
+
+Un panier appartient à qui présente son identifiant, tiré du cookie du visiteur. À la connexion ou à l'inscription, je le rattache au compte, avec au plus un panier par compte, garanti par une contrainte d'unicité en base.
+
+| Situation à la connexion | Résultat |
+| --- | --- |
+| Panier invité, compte sans panier | Le panier invité devient celui du compte |
+| Panier invité et panier du compte | Les lignes sont additionnées, chaque quantité plafonnée par le stock et par la limite par ligne, puis le panier invité est supprimé |
+| Pas de panier invité | L'appareil retrouve le panier du compte |
+
+Trois règles encadrent ce passage :
+
+- l'identifiant du compte vient de l'authentification qui vient de réussir, jamais du navigateur ;
+- seul un panier sans propriétaire peut être repris : présenter l'identifiant du panier d'un autre compte ne donne rien ;
+- à la déconnexion, le cookie est retiré : le panier reste attaché au compte et n'est plus accessible depuis l'appareil, ce qui compte sur un poste partagé.
+
+Le domaine `compte` appelle ici le domaine `panier`, et jamais l'inverse.
+
 ## Sources
 
 Les identifiants `[Sxx]` renvoient à la [bibliographie de l'audit](../audit/sources.md).

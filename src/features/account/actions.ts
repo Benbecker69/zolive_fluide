@@ -4,6 +4,7 @@ import { headers } from "next/headers";
 import { getLocale } from "next-intl/server";
 
 import { signIn, signOut, signUp } from "@/data/auth";
+import { handCartOverTo, leaveCartBehind } from "@/features/cart/hand-over";
 import { redirect } from "@/i18n/navigation";
 
 import { type AccountField, invalidFields, signInSchema, signUpSchema } from "./credentials";
@@ -43,6 +44,7 @@ export async function signUpAction(
   const result = await signUp(parsed.data, await headers());
   if (!result.ok) return { status: result.reason, values };
 
+  await handCartOverTo(result.userId);
   return redirect({ href: "/compte", locale: await getLocale() });
 }
 
@@ -64,11 +66,13 @@ export async function signInAction(
       : { status: "invalid-credentials", values };
   }
 
+  await handCartOverTo(result.userId);
   // Back to the page the visitor wanted, if it is a page of this site.
   return redirect({ href: safeNextPath(formData.get("next")), locale: await getLocale() });
 }
 
 export async function signOutAction(): Promise<void> {
   await signOut(await headers());
+  await leaveCartBehind();
   redirect({ href: "/", locale: await getLocale() });
 }
