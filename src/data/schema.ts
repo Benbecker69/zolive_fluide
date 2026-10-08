@@ -135,6 +135,21 @@ export const cartItems = pgTable(
   ],
 );
 
+/**
+ * Failed sign-in attempts per account (docs/adr/0014-sign-in-throttling.md).
+ * The account is a fingerprint of the e-mail typed, never the address itself.
+ */
+export const signInThrottles = pgTable(
+  "sign_in_throttles",
+  {
+    account: text("account").primaryKey(),
+    failures: integer("failures").notNull(),
+    windowStartedAt: timestamp("window_started_at", { withTimezone: true }).notNull(),
+    lockedUntil: timestamp("locked_until", { withTimezone: true }),
+  },
+  (table) => [check("sign_in_throttles_failures_not_negative", sql`${table.failures} >= 0`)],
+);
+
 export const categoriesRelations = relations(categories, ({ many }) => ({
   products: many(products),
 }));

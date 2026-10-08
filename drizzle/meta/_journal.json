@@ -22,6 +22,13 @@
       "when": 1791461607770,
       "tag": "0002_authentication",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1791462550467,
+      "tag": "0003_sign_in_throttle",
+      "breakpoints": true
     }
   ]
 }
