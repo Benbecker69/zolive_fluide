@@ -10,14 +10,14 @@ Merci d'indiquer :
 - les étapes de reproduction ;
 - l'impact estimé.
 
-Un accusé de réception est envoyé sous sept jours. La correction est publiée avec un avis de sécurité une fois le correctif fusionné.
+J'accuse réception sous sept jours. Je publie la correction avec un avis de sécurité une fois le correctif fusionné.
 
 ## Versions suivies
 
-Seule la branche `main` reçoit des correctifs. Le projet est une démonstration exécutée en local : il ne traite aucune donnée réelle et aucun paiement réel.
+Je ne corrige que la branche `main`. Le projet est une démonstration exécutée en local : il ne traite aucune donnée réelle et aucun paiement réel.
 
-## Règles appliquées dans ce dépôt
+## Règles que j'applique dans ce dépôt
 
 - Aucun secret dans le code ni dans l'historique ; la configuration passe par des variables d'environnement.
-- Les actions GitHub tierces sont épinglées sur un SHA de commit complet et mises à jour par Dependabot.
-- Les exigences de sécurité du produit et leur méthode de vérification sont décrites dans l'audit de cadrage (`docs/audit/`).
+- J'épingle les actions GitHub tierces sur un SHA de commit complet ; Dependabot me propose leurs mises à jour.
+- Je décris les exigences de sécurité du produit et leur méthode de vérification dans l'[audit de cadrage](docs/audit/02-exigences-qualite.md).
