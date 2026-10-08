@@ -1,6 +1,6 @@
 # Maquette et direction artistique
 
-La direction artistique a été validée sur une maquette haute fidélité **avant** tout développement. Ce dossier en est la référence : il fixe ce que le site doit donner à voir, et sert de point de comparaison pendant la recette.
+J'ai arrêté la direction artistique sur une maquette haute fidélité **avant** tout développement. Ce dossier en est la référence : il fixe ce que le site doit donner à voir, et me sert de point de comparaison pendant la recette.
 
 ## Contenu du dossier
 
@@ -26,11 +26,11 @@ Les pages HTML s'ouvrent directement dans un navigateur, sans étape de build. E
 - les zones marquées « Photo » sont des emplacements ;
 - le texte entre crochets de l'onglet « Livraison & retours » est une information que seul le commerçant peut fournir.
 
-**Non maquetté** : panier, tunnel de commande, pages de compte, pages légales, états d'erreur et de chargement, version anglaise. Ces écrans seront construits avec les composants de la charte ; chaque écart notable fera l'objet d'une capture dans la pull request.
+**Non maquetté** : panier, tunnel de commande, pages de compte, pages légales, états d'erreur et de chargement, version anglaise. Je construirai ces écrans avec les composants de la charte ; je joindrai une capture à la pull request pour chaque écart notable.
 
 ## Jetons de design
 
-Ces valeurs sont la source du thème de l'application. Toute couleur ou taille utilisée dans le code doit en provenir.
+Ces valeurs sont la source du thème de l'application. Je n'utilise dans le code aucune couleur ni taille qui n'en provienne.
 
 ### Couleurs
 
@@ -73,7 +73,7 @@ Ces valeurs sont la source du thème de l'application. Toute couleur ou taille u
 
 ## Vérification des contrastes
 
-Les rapports ci-dessous sont calculés avec la formule de luminance relative des WCAG. Le critère 1.4.3 (niveau AA) exige au moins 4,5:1 pour le texte courant et 3:1 pour le texte de grande taille ([WCAG 2.2](https://www.w3.org/TR/WCAG22/)).
+J'ai calculé les rapports ci-dessous avec la formule de luminance relative des WCAG. Le critère 1.4.3 (niveau AA) exige au moins 4,5:1 pour le texte courant et 3:1 pour le texte de grande taille ([WCAG 2.2](https://www.w3.org/TR/WCAG22/)).
 
 | Texte | Fond | Rapport | AA texte courant |
 | --- | --- | --- | --- |
@@ -92,12 +92,12 @@ Les rapports ci-dessous sont calculés avec la formule de luminance relative des
 | `accent` | `ink` | 12,57:1 | Conforme |
 | `ink` | `accent` | 12,57:1 | Conforme |
 
-### Écart relevé
+### Écart que j'ai relevé
 
 Le filet `line` (`#DCE4D5`) n'atteint que **1,23:1** sur `ground` et 1,30:1 sur `surface`. C'est sans conséquence pour un séparateur décoratif, mais la maquette l'emploie aussi comme **seul contour** de contrôles interactifs : filtres non sélectionnés, sélecteur de quantité, liste de tri. Or le contour d'un composant d'interface doit présenter un contraste d'au moins 3:1 avec les couleurs adjacentes (WCAG 2.2, critère 1.4.11, niveau AA).
 
-Décision : la maquette n'est pas modifiée, elle reste le reflet de ce qui a été validé. L'écart est corrigé à l'implémentation par un jeton dédié aux contours de contrôles, à 3:1 minimum ; il est suivi dans l'issue du système de design.
+Ma décision : je ne modifie pas la maquette, elle reste le reflet de ce qui a été validé. Je corrige l'écart à l'implémentation, par un jeton dédié aux contours de contrôles, à 3:1 minimum ; il est suivi dans l'[issue du système de design](https://github.com/Benbecker69/zolive_fluide/issues/15) et dans l'[ADR 0006](../docs/adr/0006-tailwind-design-tokens.md).
 
 ## Régénérer les captures
 
-Les captures sont produites par Chrome en mode sans interface, à 1440 px de large, à partir des pages de `mockup/`. Elles doivent être régénérées si une page est modifiée.
+Je produis les captures avec Chrome en mode sans interface, à 1440 px de large, à partir des pages de `mockup/`. Je les régénère si une page est modifiée.
