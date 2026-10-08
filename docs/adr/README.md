@@ -25,6 +25,7 @@ Je consigne ici chaque décision structurante du projet sous la forme d'un ADR (
 | [0010](0010-docker-compose-local-runtime.md) | Exécution locale avec Docker Compose | Acceptée | 2026-10-08 |
 | [0011](0011-pin-eslint-9.md) | Épingler ESLint en version 9 | Acceptée | 2026-10-08 |
 | [0012](0012-i18n-cross-cutting-layer.md) | Faire de l'internationalisation une couche transverse | Acceptée | 2026-10-08 |
+| [0013](0013-on-demand-static-pages.md) | Générer les pages du catalogue à la demande, puis les servir depuis le cache | Acceptée | 2026-10-08 |
 
 Statuts possibles : *Proposée*, *Acceptée*, *Remplacée par NNNN*, *Abandonnée*.
 
